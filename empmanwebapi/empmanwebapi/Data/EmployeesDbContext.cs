@@ -12,7 +12,7 @@ namespace empmanwebapi.Data
         {
         }
       
-        public async Task<DataTable> GetEmployee()
+        public async Task<DataTable> GetAllEmployee_()
         {
             var connectionString = Database.GetDbConnection().ConnectionString;
 

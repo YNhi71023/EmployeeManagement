@@ -1,4 +1,5 @@
 ﻿using empmanwebapi.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using storeworkingapi.Models;
 using System.Data;
@@ -18,7 +19,7 @@ namespace empmanwebapi.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllEmployees()
         {
-            DataTable data = await _context.GetEmployee();
+            DataTable data = await _context.GetAllEmployee_();
 
             if (data.Rows.Count > 0)
             {
@@ -34,7 +35,7 @@ namespace empmanwebapi.Controllers
             if (employee == null) return BadRequest();
 
 
-            DataTable data = await _context.CreateEmployeeAsync_(0, employee); // Call the stored procedure
+            DataTable data = await _context.CreateEmployeeAsync_(0, employee);
 
             if (data.Rows.Count > 0)
             {
@@ -44,5 +45,7 @@ namespace empmanwebapi.Controllers
 
             return BadRequest("Error creating employee");
         }
+        
     }
 }
+
