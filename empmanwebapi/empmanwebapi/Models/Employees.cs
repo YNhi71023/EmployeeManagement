@@ -5,7 +5,7 @@ namespace storeworkingapi.Models
 {
     public class Employees
     {
-
+        public int employee_id { get; set; }
         public string employee_name { get; set; }
         public int sex { get; set; }
         public string card_number { get; set; }

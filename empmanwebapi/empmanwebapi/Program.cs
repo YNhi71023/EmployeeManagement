@@ -1,5 +1,6 @@
-using empmanwebapi.Configurations;
+﻿using empmanwebapi.Configurations;
 using empmanwebapi.Data;
+using empmanwebapi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,13 +8,57 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddControllers().AddNewtonsoftJson();
+
+string connect = "Data Source=DESKTOP-IJ24I4D;User Id=sa;Password=07102003;Initial Catalog=StoreWorking;Integrated Security=True;Encrypt=False;Trust Server Certificate=True";
+builder.Services.AddDbContext<AccountDbContext>(options =>
+    options.UseSqlServer(connect));
+builder.Services.AddDbContext<EmployeesDbContext>(options =>
+    options.UseSqlServer(connect));
+builder.Services.AddDbContext<UsersDbContext>(options =>
+    options.UseSqlServer(connect));
+builder.Services.AddDbContext<PositionDbContext>(options =>
+    options.UseSqlServer(connect));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = "JwtIssuer",
+        ValidAudience = "JwtAudience", 
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("iKfolJLNwhnuMayeSPlgVoeJzPYWjCUb"))
+    };
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("empmanweb_angular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")  // Địa chỉ frontend Angular
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddAuthorization();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -43,39 +88,18 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-builder.Services.AddControllers().AddNewtonsoftJson();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = builder.Configuration["JwtAuth:Issuer"],
-                    ValidAudience = builder.Configuration["JwtAuth:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtAuth:Key"]))
-                };
-            });
-
-builder.Services.AddDbContext<EmployeesDbContext>(options =>
-    options.UseSqlServer("Data Source=DESKTOP-IJ24I4D;User Id=sa;Password=07102003;Initial Catalog=StoreWorking;Integrated Security=True;Encrypt=False;Trust Server Certificate=True"));
-
-builder.Services.AddAuthorization();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JWTAuthDemo v1"));
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("empmanweb_angular");
 app.MapControllers();
 
 app.Run();
