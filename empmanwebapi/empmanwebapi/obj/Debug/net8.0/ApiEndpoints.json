@@ -1,37 +1,5 @@
 [
   {
-    "ContainingType": "empmanwebapi.Controllers.AccountsController",
-    "Method": "LoginAccount",
-    "RelativePath": "api/Accounts/LoginAccount",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "account",
-        "Type": "empmanwebapi.Models.LoginModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "empmanwebapi.Controllers.AccountsController",
-    "Method": "RegisterUser",
-    "RelativePath": "api/Accounts/RegisterUser",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "account",
-        "Type": "empmanwebapi.Models.RegisterModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "CreateEmployee",
     "RelativePath": "api/Employees/CreateEmployee",
@@ -40,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "employee",
-        "Type": "storeworkingapi.Models.Employees",
+        "Name": "e",
+        "Type": "storeworkingapi.Models.EmployeeCreateModel",
         "IsRequired": true
       }
     ],
@@ -49,42 +17,112 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
-    "Method": "DaleteEmployee",
-    "RelativePath": "api/Employees/DaleteEmployee",
-    "HttpMethod": "DELETE",
+    "Method": "CreatePosition",
+    "RelativePath": "api/Employees/CreatePosition",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "employee_id",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "ep",
+        "Type": "storeworkingapi.Models.EmpPositionModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
-    "Method": "GetAllEmployees",
-    "RelativePath": "api/Employees/GetAllEmployees",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
-    "Method": "GetEmployeeById",
-    "RelativePath": "api/Employees/GetEmployeeById",
-    "HttpMethod": "GET",
+    "Method": "CreateType",
+    "RelativePath": "api/Employees/CreateType",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "employee_id",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "et",
+        "Type": "storeworkingapi.Models.EmpTypeModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "DeletePosition",
+    "RelativePath": "api/Employees/DeletePosition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ep",
+        "Type": "storeworkingapi.Models.EmpPositionDelete",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "DeleteType",
+    "RelativePath": "api/Employees/DeleteType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "et",
+        "Type": "storeworkingapi.Models.EmpTypeDelete",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "FilterEmployee",
+    "RelativePath": "api/Employees/FilterEmployee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "em",
+        "Type": "storeworkingapi.Models.EmployeeFilterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "FilterPosition",
+    "RelativePath": "api/Employees/FilterPosition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "p",
+        "Type": "storeworkingapi.Models.PositionFilterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "FilterType",
+    "RelativePath": "api/Employees/FilterType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "t",
+        "Type": "storeworkingapi.Models.TypeFilterModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -93,17 +131,12 @@
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "UpdateEmployee",
     "RelativePath": "api/Employees/UpdateEmployee",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "employee",
+        "Name": "e",
         "Type": "storeworkingapi.Models.Employees",
         "IsRequired": true
       }
@@ -111,42 +144,48 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "empmanwebapi.Controllers.PositionController",
-    "Method": "CreatePosition",
-    "RelativePath": "api/Position/CreatePosition",
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "UpdatePosition",
+    "RelativePath": "api/Employees/UpdatePosition",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "position",
-        "Type": "empmanwebapi.Models.Position",
+        "Name": "ep",
+        "Type": "storeworkingapi.Models.EmpPosition",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "empmanwebapi.Controllers.PositionController",
-    "Method": "GetAllPosition",
-    "RelativePath": "api/Position/GetAllPosition",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "empmanwebapi.Controllers.UsersController",
-    "Method": "DeleteUser",
-    "RelativePath": "api/Users/DeleteUser",
-    "HttpMethod": "DELETE",
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "UpdateType",
+    "RelativePath": "api/Employees/UpdateType",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user_id",
-        "Type": "System.Int32",
+        "Name": "et",
+        "Type": "storeworkingapi.Models.EmpTypes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UploadController",
+    "Method": "UploadImage",
+    "RelativePath": "api/Upload/upload-image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
     ],
@@ -154,12 +193,34 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.UsersController",
-    "Method": "GetAllUser",
-    "RelativePath": "api/Users/GetAllUser",
-    "HttpMethod": "GET",
+    "Method": "CreateUser",
+    "RelativePath": "api/Users/CreateUser",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "u",
+        "Type": "empmanwebapi.Models.CreateUserModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.UsersController",
+    "Method": "LoginUser",
+    "RelativePath": "api/Users/LoginUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "u",
+        "Type": "empmanwebapi.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

@@ -8,11 +8,14 @@ namespace empmanwebapi.Models
         public string user_name { get; set; }
         [Required]
         public string password { get; set; }
+    }
+    public class CreateUserModel
+    {
+        public int employee_id { get; set; }
         [Required]
-        public string email { get; set; }
+        public string user_name { get; set; }
         [Required]
-        public string role { get; set; }
+        public string password { get; set; }
 
-        public DateTime Date { get; set; } = DateTime.Now;
     }
 }

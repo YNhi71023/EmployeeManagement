@@ -13,8 +13,10 @@ namespace empmanwebapi.Models
     }
     public class reponseLogin
     {
-        public int account_id { get; set; }
-        public string username { get; set; }
+        public int employee_id { get; set; }
+        public string employee_name { get; set; }
+        public int position_id { get; set; }
+        public int employee_type_id { get; set; }
         public string token { get; set; }
     }
 }

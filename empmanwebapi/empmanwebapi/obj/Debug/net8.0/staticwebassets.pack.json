@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\427a205f-da0d-4fe7-b84e-b337a29aae63.PNG",
+      "PackagePath": "staticwebassets\\uploads\\427a205f-da0d-4fe7-b84e-b337a29aae63.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\837b655f-e333-408e-9990-4604cce2d49a.PNG",
+      "PackagePath": "staticwebassets\\uploads\\837b655f-e333-408e-9990-4604cce2d49a.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\9cb4c76f-caa1-48a6-8dd8-75102268c51e.PNG",
+      "PackagePath": "staticwebassets\\uploads\\9cb4c76f-caa1-48a6-8dd8-75102268c51e.PNG"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.empmanwebapi.props",
+      "PackagePath": "build\\empmanwebapi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.empmanwebapi.props",
+      "PackagePath": "buildMultiTargeting\\empmanwebapi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.empmanwebapi.props",
+      "PackagePath": "buildTransitive\\empmanwebapi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.empmanwebapi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

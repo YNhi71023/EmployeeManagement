@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "UJyDVm1EW/QI85BwxE3oLYiatXtwhZECNtofy2MEFvg=",
+  "Hash": "8CZ+THOJnBqH+SB0+Xi9d/jY5j1qsYtNzrotncUi+fo=",
   "Source": "empmanwebapi",
   "BasePath": "_content/empmanwebapi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "empmanwebapi\\wwwroot",
+      "Source": "empmanwebapi",
+      "ContentRoot": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\",
+      "BasePath": "_content/empmanwebapi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\427a205f-da0d-4fe7-b84e-b337a29aae63.PNG",
+      "SourceId": "empmanwebapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\",
+      "BasePath": "_content/empmanwebapi",
+      "RelativePath": "uploads/427a205f-da0d-4fe7-b84e-b337a29aae63.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\427a205f-da0d-4fe7-b84e-b337a29aae63.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\837b655f-e333-408e-9990-4604cce2d49a.PNG",
+      "SourceId": "empmanwebapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\",
+      "BasePath": "_content/empmanwebapi",
+      "RelativePath": "uploads/837b655f-e333-408e-9990-4604cce2d49a.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\837b655f-e333-408e-9990-4604cce2d49a.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\9cb4c76f-caa1-48a6-8dd8-75102268c51e.PNG",
+      "SourceId": "empmanwebapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\",
+      "BasePath": "_content/empmanwebapi",
+      "RelativePath": "uploads/9cb4c76f-caa1-48a6-8dd8-75102268c51e.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\9cb4c76f-caa1-48a6-8dd8-75102268c51e.PNG"
+    }
+  ]
 }

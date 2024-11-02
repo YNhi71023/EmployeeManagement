@@ -154,3 +154,4 @@ C:\Users\Y NHI\Documents\GitHub\EmployeeManagement\empmanwebapi\empmanwebapi\bin
 C:\Users\Y NHI\Documents\GitHub\EmployeeManagement\empmanwebapi\empmanwebapi\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Y NHI\Documents\GitHub\EmployeeManagement\empmanwebapi\empmanwebapi\bin\Debug\net8.0\Dapper.dll
 C:\Users\Y NHI\Documents\GitHub\EmployeeManagement\empmanwebapi\empmanwebapi\bin\Debug\net8.0\Dapper.SqlBuilder.dll
+C:\Users\Y NHI\Documents\GitHub\EmployeeManagement\empmanwebapi\empmanwebapi\bin\Debug\net8.0\empmanwebapi.staticwebassets.runtime.json

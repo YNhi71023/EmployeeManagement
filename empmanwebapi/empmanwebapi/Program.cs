@@ -18,13 +18,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddNewtonsoftJson();
 
 string connect = "Data Source=DESKTOP-IJ24I4D;User Id=sa;Password=07102003;Initial Catalog=StoreWorking;Integrated Security=True;Encrypt=False;Trust Server Certificate=True";
-builder.Services.AddDbContext<AccountDbContext>(options =>
-    options.UseSqlServer(connect));
-builder.Services.AddDbContext<EmployeesDbContext>(options =>
-    options.UseSqlServer(connect));
 builder.Services.AddDbContext<UsersDbContext>(options =>
     options.UseSqlServer(connect));
-builder.Services.AddDbContext<PositionDbContext>(options =>
+builder.Services.AddDbContext<EmployeesDbContext>(options =>
     options.UseSqlServer(connect));
 
 builder.Services.AddAuthentication(options =>
@@ -96,6 +92,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
