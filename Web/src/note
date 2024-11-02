@@ -1,0 +1,8 @@
+DECLARE @Password NVARCHAR(50) = '123abc';
+DECLARE @PasswordHash VARBINARY(16);
+
+-- Convert password to MD5 hash
+SET @PasswordHash = HASHBYTES('MD5', @Password);
+
+-- Display MD5 hash as hexadecimal
+SELECT @Password AS OriginalPassword, CONVERT(VARCHAR(32), @PasswordHash, 2) AS MD5Hash;

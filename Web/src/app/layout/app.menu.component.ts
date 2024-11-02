@@ -22,16 +22,16 @@ export class AppMenuComponent implements OnInit {
             },{
                 label: 'EMPLOYEES',
                 items: [
-                    { label: 'List', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/employee'] },
-                    { label: 'Create', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/empty'] },
-                    { label: 'Employee Type', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/empty'] },
-                    { label: 'Employee Position', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/empty'] },
+                    { label: 'Employee List', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/employee'] },
+                    // { label: 'Create', icon: 'pi pi-fw pi-id-card', routerLink: ['/create-employee'] },
+                    { label: 'Employee Type', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/type'] },
+                    { label: 'Employee Position', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/position'] },
                 ]
             },
             {
                 label: 'ACCOUNT',
                 items: [
-                    { label: 'Login', icon: 'pi pi-fw pi-id-card', routerLink: ['/auth/login/'] },
+                    { label: 'Login', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
                 ]
             }
             // {

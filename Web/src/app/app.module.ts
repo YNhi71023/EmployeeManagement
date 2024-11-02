@@ -11,6 +11,9 @@ import { EventService } from './page/service/event.service';
 import { IconService } from './page/service/icon.service';
 import { NodeService } from './page/service/node.service';
 import { PhotoService } from './page/service/photo.service';
+import { customInterceptor } from './interceptor/custom.interceptor';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -18,7 +21,8 @@ import { PhotoService } from './page/service/photo.service';
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService,
+        provideHttpClient(withInterceptors([customInterceptor]))
     ],
     bootstrap: [AppComponent],
 })

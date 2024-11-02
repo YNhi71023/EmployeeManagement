@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Route, Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PasswordModule } from 'primeng/password';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { helperCore } from 'src/app/page/service/CORE';
+import { LoginService } from 'src/app/page/service/login.service';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html',
+    standalone: true,
+    imports: [FormsModule,PasswordModule,CheckboxModule,ButtonModule],
+    templateUrl: './login.component.html',   
     styles: [`
         :host ::ng-deep .pi-eye,
         :host ::ng-deep .pi-eye-slash {
@@ -12,12 +21,41 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
             color: var(--primary-color) !important;
         }
     `]
+    
 })
 export class LoginComponent {
 
-    valCheck: string[] = ['remember'];
+  constructor(private login_service: LoginService,private router: Router){}
+  ngOnInit(): void {
+    localStorage.clear()
+  }
+  logiObj: any = {
+    "username": "",
+    "password": ""
+  };
 
-    password!: string;
+  onLogin() {
+    console.log(this.logiObj)
+    if(this.logiObj.username == ""){
+      alert("Please enter username")
+      return;
+    }
+    if(this.logiObj.password == ""){
+      alert("Please enter password")
+      return;
+    }
 
-    constructor(public layoutService: LayoutService) { }
+    this.login_service.onLogin(this.logiObj.username,this.logiObj.password).subscribe((data:any)=>{
+      if(data.status == "ok"){
+        // console.log(data)
+        const user = JSON.stringify(data.data)
+      //  localStorage.setItem("_u",helperCore.encode(user))
+        localStorage.setItem("_ut",helperCore.encode(JSON.stringify(data.data.token)))
+        this.router.navigate(['/dashboard'])
+      }
+      else{
+        alert(data.message)
+      }
+    })
+  }
 }

@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { UploadService } from 'src/app/page/service/UploadService';
 
 @Component({
     templateUrl: './buttondemo.component.html'
 })
 export class ButtonDemoComponent implements OnInit {
-
+    constructor(private uploadService: UploadService) {
+     
+ }
     items: MenuItem[] = [];
 
     loading = [false, false, false, false];
@@ -23,6 +26,30 @@ export class ButtonDemoComponent implements OnInit {
     load(index: number) {
         this.loading[index] = true;
         setTimeout(() => this.loading[index] = false, 1000);
+    }
+    fileTemplete!: File;
+    onChangeFile(event: any) {
+        this.fileTemplete = event.target.files[0];
+         this.saveFile()
+    }
+    saveFile() {
+        const formDataUpload = new FormData();
+        formDataUpload.append('files', this.fileTemplete);
+        this.uploadService.uploadImage(this.fileTemplete).subscribe(
+            (response) => {
+              console.log(response);
+               response.url;
+              
+            },
+            (error) => {
+              console.error('File upload failed', error);
+            }
+          );
+
+    }
+    @ViewChild('myInputFile') myInputFile: any;
+    clearFileInput() {
+        this.myInputFile.nativeElement.value = null;
     }
     
 }

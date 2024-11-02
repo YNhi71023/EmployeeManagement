@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     imports: [RouterModule.forChild([
         { path: 'crud', loadChildren: () => import('./crud/crud.module').then(m => m.CrudModule) },
-        { path: 'empty', loadChildren: () => import('./empty/emptydemo.module').then(m => m.EmptyDemoModule) },
+        { path: 'type', loadChildren: () => import('./types/types.module').then(m => m.TypesModule) },
         { path: 'employee', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
-        { path: 'timeline', loadChildren: () => import('./timeline/timelinedemo.module').then(m => m.TimelineDemoModule) },
+        { path: 'position', loadChildren: () => import('./position/position.module').then(m => m.PositionModule) },
         { path: '**', redirectTo: '/notfound' }
     ])],
     exports: [RouterModule]
