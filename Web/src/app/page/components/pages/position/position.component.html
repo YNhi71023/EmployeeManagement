@@ -78,7 +78,19 @@
                     <label for="positionname" class="font-semibold w-6rem">Position name</label>
                     <input pInputText id="positionname" [(ngModel)]="cr_position_name" class="flex-auto" autocomplete="off" />
                 </div>
-                
+                <ng-template pTemplate="footer">
+                    <p-button 
+                        label="Cancel" 
+                        [text]="true" 
+                        severity="secondary" 
+                        (onClick)="visible = false" />
+                    <p-button 
+                        label="Save" 
+                        [outlined]="true" 
+                        severity="secondary"                     
+                       (click)="create()"
+                      />
+                </ng-template>
                 
         </p-dialog>
     </div>

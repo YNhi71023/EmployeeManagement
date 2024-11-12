@@ -44,13 +44,12 @@ export class LoginComponent {
       alert("Please enter password")
       return;
     }
-
     this.login_service.onLogin(this.logiObj.username,this.logiObj.password).subscribe((data:any)=>{
       if(data.status == "ok"){
-        // console.log(data)
-        const user = JSON.stringify(data.data)
-      //  localStorage.setItem("_u",helperCore.encode(user))
-        localStorage.setItem("_ut",helperCore.encode(JSON.stringify(data.data.token)))
+        // const user = JSON.stringify(data.data)
+        // localStorage.setItem("_u",helperCore.encode(user))
+        localStorage.setItem("_ut",helperCore.encode(data.data.token))
+        //localStorage.setItem("_ut",helperCore.decode(JSON.stringify(data.data.token)))
         this.router.navigate(['/dashboard'])
       }
       else{

@@ -4,9 +4,10 @@ import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { authGuard } from '../../service/auth.guard';
 
 @Component({
-    templateUrl: './dashboard.component.html',
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 

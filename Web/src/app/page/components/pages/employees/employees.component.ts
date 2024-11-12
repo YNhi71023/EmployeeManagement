@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { getDateMeta, NowTimer } from '@fullcalendar/core/internal';
 import { MenuItem, MessageService } from 'primeng/api';
 import { FileUploadModule, UploadEvent } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
@@ -66,7 +67,7 @@ export class EmployeeComponent {
     fileTemplete!: File;
     onChangeFile(event: any) {
         this.fileTemplete = event.target.files[0];
-         this.saveFile()
+        this.saveFile()
     }
     saveFile() {
         const formDataUpload = new FormData();
@@ -75,16 +76,63 @@ export class EmployeeComponent {
             (response) => {
               console.log(response);
                this.item_edit.image_profile = response.url
-              
             },
             (error) => {
               console.error('File upload failed', error);
             }
           );
-
     }
-  
-  
+    onChangeFileimgprofile(event: any) {
+        this.fileTemplete = event.target.files[0];
+        this.saveFileimgprofile()
+    }
+    saveFileimgprofile() {
+        const formDataUpload = new FormData();
+        formDataUpload.append('files', this.fileTemplete);
+        this.uploadService.uploadImage(this.fileTemplete).subscribe(
+            (response) => {
+              console.log(response);
+               this.cr_image_profile = response.url
+            },
+            (error) => {
+              console.error('File upload failed', error);
+            }
+          );
+    }
+    onChangeFileimgbefore(event: any) {
+        this.fileTemplete = event.target.files[0];
+        this.saveFileimgbefore()
+    }
+    saveFileimgbefore() {
+        const formDataUpload = new FormData();
+        formDataUpload.append('files', this.fileTemplete);
+        this.uploadService.uploadImage(this.fileTemplete).subscribe(
+            (response) => {
+              console.log(response);
+               this.cr_image_before_card = response.url
+            },
+            (error) => {
+              console.error('File upload failed', error);
+            }
+          );
+    }
+    onChangeFileimgafter(event: any) {
+        this.fileTemplete = event.target.files[0];
+        this.saveFileimgafter()
+    }
+    saveFileimgafter() {
+        const formDataUpload = new FormData();
+        formDataUpload.append('files', this.fileTemplete);
+        this.uploadService.uploadImage(this.fileTemplete).subscribe(
+            (response) => {
+              console.log(response);
+               this.cr_image_after_card = response.url
+            },
+            (error) => {
+              console.error('File upload failed', error);
+            }
+          );
+    }    
     Show(item: any) {
         console.log(item);
         this.item_edit = item;
@@ -158,66 +206,13 @@ export class EmployeeComponent {
     
     employee_user: any = ''
     create() {
-        this.employeeService
-            .CreateEmployee(
-                this.cr_employee_name,
-                this.cr_sex,
-                this.cr_card_number,
-                this.cr_image_before_card,
-                this.cr_image_after_card,
-                this.cr_birthday,
-                this.cr_address,
-                this.cr_mail,
-                this.cr_mobile,
-                this.cr_image_profile,
-                this.cr_employee_type_id,
-                this.cr_position_id
-            )
+        this.employeeService.CreateEmployee(this.cr_employee_name,this.cr_sex,this.cr_card_number,this.cr_image_before_card,this.cr_image_after_card,this.cr_birthday,this.cr_address,this.cr_mail,this.cr_mobile,this.cr_image_profile,this.cr_employee_type_id,this.cr_position_id)
             .subscribe((data: any) => {
                 console.log(data);
-                this.employee_user = data.employee_id
-                
-                //     if(data.status == "ok"){
-                //       if(data.message == "successfull."){
-                //         this.visible_model_create=false
-                //         alert("Create successfull")
-                //       }else{
-                //         alert(data.message)
-                //         this.cr_employee_name=''
-                //         this.cr_sex= ''
-                //         this.cr_card_number= ''
-                //         this.cr_image_before_card= ''
-                //         this.cr_image_after_card= ''
-                //         this.cr_birthday= ''
-                //         this.cr_address= ''
-                //         this.cr_mail= ''
-                //         this.cr_mobile= ''
-                //         this.cr_image_profile= ''
-                //         this.cr_employee_type_id= ''
-                //         this.position_id= ''
-                //       }
-                //     }else{
-                //       alert(data.message)
-                //     }
-                //       this.cr_employee_name=''
-                //       this.cr_sex= ''
-                //       this.cr_card_number= ''
-                //       this.cr_image_before_card= ''
-                //       this.cr_image_after_card= ''
-                //       this.cr_birthday= ''
-                //       this.cr_address= ''
-                //       this.cr_mail= ''
-                //       this.cr_mobile= ''
-                //       this.cr_image_profile= ''
-                //       this.cr_employee_type_id= ''
-                //       this.position_id= ''
-                //       this.filter()
+                this.employee_user = data.employee_id;
             });
     }
-    
     createUser(){
-        
-    
         if(this.item_edit.user_name==''){
             alert("enter user name")
             return
@@ -232,5 +227,13 @@ export class EmployeeComponent {
       this.employeeService.CreateUser(this.item_edit.employee_id, this.item_edit.user_name,this.item_edit.password).subscribe((data:any)=>{
         console.log(data)
       })
+    }
+    save(){
+        console.log(this.item_edit)
+        this.employeeService.UpdateEmployee(this.item_edit.employee_id,this.item_edit.employee_name,this.item_edit.sex,this.item_edit.card_number,this.item_edit.image_before_card,this.item_edit.image_after_card,this.item_edit.birthday,this.item_edit.address,this.item_edit.mail,this.item_edit.mobile,this.item_edit.image_profile,this.item_edit.employee_type_id,this.item_edit.position_id).subscribe((data:any)=>{
+            console.log(data)
+            this.visible_model_edit = false;
+            this.filter()
+        })
     }
 }

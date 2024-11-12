@@ -39,7 +39,6 @@ namespace storeworkingapi.Models
     }
     public class EmployeeFilterModel
     {
-        public int user_login { get; set; }
         public int employee_id { get; set; }
         public string employee_name { get; set; } 
         public int sex { get; set; }
@@ -65,7 +64,6 @@ namespace storeworkingapi.Models
     }
     public class TypeFilterModel
     {
-        public int user_login { get; set; }
         public int type_id { get; set; }
         public string type_code { get; set; }
         public string type_name { get; set; }
@@ -83,12 +81,11 @@ namespace storeworkingapi.Models
     {      
         public string position_code { get; set; }
         public string position_name { get; set; } 
-        public int status { get; set; }
+        //public int status { get; set; }
     }
 
     public class PositionFilterModel
     {
-        public int user_login { get; set; }
         public int position_id { get; set; }
         public string position_code { get; set; }
         public string position_name { get; set; }

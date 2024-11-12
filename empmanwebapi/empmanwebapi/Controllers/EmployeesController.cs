@@ -24,7 +24,7 @@ namespace empmanwebapi.Controllers
         public async Task<IActionResult> FilterEmployee([FromBody] EmployeeFilterModel em)
         {
             ReponseModel r = new ReponseModel();
-            DataTable data = await _context.FilterEmployee_(em);
+            DataTable data = await _context.FilterEmployee_(user_login,em);
             if (data.Rows.Count == 0)
             {
                 r.status = "error";
@@ -47,7 +47,7 @@ namespace empmanwebapi.Controllers
         public async Task<IActionResult> FilterType([FromBody] TypeFilterModel t)
         {
             ReponseModel r = new ReponseModel();
-            DataTable data = await _context.FilterType_(t);
+            DataTable data = await _context.FilterType_(user_login,t);
             if (data.Rows.Count == 0)
             {
                 r.status = "error";
@@ -69,7 +69,7 @@ namespace empmanwebapi.Controllers
         public async Task<IActionResult> FilterPosition([FromBody] PositionFilterModel p)
         {
             ReponseModel r = new ReponseModel();
-            DataTable data = await _context.FilterPosition_(p);
+            DataTable data = await _context.FilterPosition_(user_login,p);
             if (data.Rows.Count == 0)
             {
                 r.status = "error";
@@ -114,12 +114,12 @@ namespace empmanwebapi.Controllers
         public async Task<IActionResult> CreateType([FromBody] EmpTypeModel et)
         {
             ReponseModel r = new ReponseModel();
-            //if (et == null)
-            //{
-            //    r.status = "error";
-            //    r.message = "please input type";
-            //    return Ok(r);
-            //};
+            if (et == null)
+            {
+                r.status = "error";
+                r.message = "please input type";
+                return Ok(r);
+            };
             DataTable data = await _context.CreateType_(user_login, et);
             if (data.Rows.Count > 0)
             {
@@ -163,8 +163,8 @@ namespace empmanwebapi.Controllers
                 r.message = "please input employee";
                 return Ok(r);
             };
-            int update = await _context.UpdateEmployee_(user_login, e);
-            if (update == 1)
+            DataTable update = await _context.UpdateEmployee_(user_login, e);
+            if (update.Rows.Count == 1)
             {
                 r.status = "ok";
                 r.message = "update successful";

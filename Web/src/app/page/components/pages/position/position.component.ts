@@ -43,6 +43,9 @@ export class PositionComponent {
     this.item_delete = item
     this.visible_model_delete = true;
   }
+  ngOnInit(): void {
+    this.filter()
+  }
   save(){
     console.log(this.item_edit)
       if(this.item_edit.position_name == ''){

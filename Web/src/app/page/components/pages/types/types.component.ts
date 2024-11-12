@@ -36,11 +36,12 @@ export class TypesComponent {
     this.item_edit = item
     this.visible_model_edit = true;
   }
-
+  ngOnInit(): void {
+    this.filter()
+  }
   dataEmployeeType: any = []
   filter(){
     this.loading = true
-    console.log(this.employee_type_code)
     console.log(this.employee_type_name)
     this.dataEmployeeType = []
     this.employeeService.FilterType(0,this.employee_type_code,this.employee_type_name,0).subscribe((data:any)=>{

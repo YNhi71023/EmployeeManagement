@@ -68,6 +68,16 @@ namespace empmanwebapi.Controllers
               
                 p.employee_id = Convert.ToInt32( data.Rows[0]["employee_id"].ToString());
                 p.employee_name = data.Rows[0]["employee_name"].ToString();
+                p.sex = Convert.ToInt32(data.Rows[0]["sex"].ToString());
+                p.address = data.Rows[0]["address"].ToString();
+                p.mail = data.Rows[0]["mail"].ToString();
+                p.card_number = data.Rows[0]["card_number"].ToString();
+                p.mobile = data.Rows[0]["mobile"].ToString();
+                p.image_profile = data.Rows[0]["image_profile"].ToString();
+                p.image_after_card = data.Rows[0]["image_after_card"].ToString();
+                p.image_before_card = data.Rows[0]["image_before_card"].ToString();
+                p.position_name = data.Rows[0]["position_name"].ToString();
+                p.employee_type_name = data.Rows[0]["employee_type_name"].ToString();
                 p.employee_type_id = Convert.ToInt32(data.Rows[0]["employee_type_id"].ToString());
                 p.position_id = Convert.ToInt32(data.Rows[0]["position_id"].ToString());
 

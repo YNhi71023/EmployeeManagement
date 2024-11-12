@@ -17,7 +17,7 @@ namespace empmanwebapi.Data
             connectionString  = Database.GetDbConnection().ConnectionString;
         }
        
-        public async Task<DataTable> FilterEmployee_(EmployeeFilterModel em)
+        public async Task<DataTable> FilterEmployee_(int user_login,EmployeeFilterModel em)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -25,7 +25,7 @@ namespace empmanwebapi.Data
                 using (var command = new SqlCommand("[dbo].[Employee.GetList]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@user_login", em.user_login));
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
                     command.Parameters.Add(new SqlParameter("@employee_id", em.employee_id));
                     command.Parameters.Add(new SqlParameter("@employee_name", em.employee_name));
                     command.Parameters.Add(new SqlParameter("@sex", em.sex));
@@ -45,7 +45,7 @@ namespace empmanwebapi.Data
         }
 
 
-        public async Task<DataTable> FilterType_(TypeFilterModel t)
+        public async Task<DataTable> FilterType_(int user_login,TypeFilterModel t)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -53,7 +53,7 @@ namespace empmanwebapi.Data
                 using (var command = new SqlCommand("[dbo].[Type.GetList]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@user_login", t.user_login));
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
                     command.Parameters.Add(new SqlParameter("@type_id", t.type_id));
                     command.Parameters.Add(new SqlParameter("@emp_type_code", t.type_code));
                     command.Parameters.Add(new SqlParameter("@emp_type_name", t.type_name));
@@ -67,7 +67,7 @@ namespace empmanwebapi.Data
                 }
             }
         }
-        public async Task<DataTable> FilterPosition_(PositionFilterModel p)
+        public async Task<DataTable> FilterPosition_(int user_login, PositionFilterModel p)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -75,7 +75,7 @@ namespace empmanwebapi.Data
                 using (var command = new SqlCommand("[dbo].[Position.GetList]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@user_login", p.user_login));
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
                     command.Parameters.Add(new SqlParameter("@position_id", p.position_id));
                     command.Parameters.Add(new SqlParameter("@emp_position_code", p.position_code));
                     command.Parameters.Add(new SqlParameter("@emp_position_name", p.position_name));
@@ -160,15 +160,16 @@ namespace empmanwebapi.Data
                 }
             }
         }
-        public async Task<int> UpdateEmployee_(int user_login, Employees e)
+        public async Task<DataTable> UpdateEmployee_(int user_login, Employees e)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
                 using (var command = new SqlCommand("[dbo].[Employee.Update]", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@user_login", user_login));
-                    command.Parameters.Add(new SqlParameter("@employee_name", e.employee_id));
+                    command.Parameters.Add(new SqlParameter("@employee_id", e.employee_id));
                     command.Parameters.Add(new SqlParameter("@employee_name", e.employee_name));
                     command.Parameters.Add(new SqlParameter("@sex", e.sex));
                     command.Parameters.Add(new SqlParameter("@card_number", e.card_number));
@@ -184,7 +185,9 @@ namespace empmanwebapi.Data
 
                     using (var adapter = new SqlDataAdapter(command))
                     {
-                        return 1;
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+                        return dataTable;
                     }
                 }
             }
@@ -224,7 +227,6 @@ namespace empmanwebapi.Data
                     command.Parameters.Add(new SqlParameter("@position_id", ep.position_id));
                     command.Parameters.Add(new SqlParameter("@position_code", ep.position_code));
                     command.Parameters.Add(new SqlParameter("@position_name", ep.position_name));
-                    command.Parameters.Add(new SqlParameter("@status",ep.status));
                     using (var adapter = new SqlDataAdapter(command))
                     {
 
