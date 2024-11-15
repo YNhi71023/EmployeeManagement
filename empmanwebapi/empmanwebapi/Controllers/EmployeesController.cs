@@ -86,6 +86,28 @@ namespace empmanwebapi.Controllers
 
             return BadRequest("Error filter employee position");
         }
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> FilterManager([FromBody] EmpManFilterModel em)
+        {
+            ReponseModel r = new ReponseModel();
+            DataTable data = await _context.FilterManager_(user_login, em);
+            if (data.Rows.Count == 0)
+            {
+                r.status = "error";
+                r.message = "employee manager not found";
+                return Ok(r);
+            }
+            if (data.Rows.Count > 0)
+            {
+                r.status = "ok";
+                r.message = "filter successful";
+                r.data = data;
+                return Ok(r);
+            }
+
+            return BadRequest("Error filter employee manager");
+        }
 
         [HttpPost("[action]")]
         [SercurityToken]
@@ -150,6 +172,27 @@ namespace empmanwebapi.Controllers
                 return Ok(r);
             }
             return BadRequest("Error creating employee position");
+        }
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> CreateManager([FromBody] EmployeeManeger em)
+        {
+            ReponseModel r = new ReponseModel();
+            if (em == null)
+            {
+                r.status = "error";
+                r.message = "please input manager";
+                return Ok(r);
+            };
+            DataTable data = await _context.CreateManager_(user_login, em);
+            if (data.Rows.Count > 0)
+            {
+                r.status = "ok";
+                r.message = data.Rows[0]["NOTIFICATION"].ToString();
+                r.data = data;
+                return Ok(r);
+            }
+            return BadRequest("Error creating employee manager");
         }
 
         [HttpPost("[action]")]

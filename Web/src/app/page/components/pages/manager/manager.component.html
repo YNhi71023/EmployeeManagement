@@ -1,0 +1,53 @@
+<p-breadcrumb 
+    class="max-w-full" 
+    [model]="items" 
+    [home]="home" />
+    <div class="card mt-4">
+        <div class="p-fluid p-formgrid grid">                
+            
+            <div class="field col-12 md:col-6">
+                <h6>Manager Name</h6>
+                <input pInputText 
+                placeholder="enter a manager name" 
+                [(ngModel)]="manager_name"/>
+            </div>
+           
+            <div class="field col-12 md:col-6">
+                <h6>Employee Name</h6>
+                <input pInputText 
+                placeholder="enter a employee name"
+                [(ngModel)]="employee_name" />
+            </div>
+        </div>
+       
+    </div>
+    <p-toolbar>
+        <div class="p-toolbar-group-left flex flex-wrap">
+            <button pButton type="button" label="Search" class="p-button-success mr-2" (click)="filter()" icon="pi pi-search"></button>
+            <button pButton type="button" label="Create" icon="pi pi-plus" class="mr-2"></button>
+        </div>
+    
+        <div class="p-toolbar-group-right">
+            <!-- <p-splitButton label="Options" icon="pi pi-check" [model]="items"></p-splitButton> -->
+        </div>
+    </p-toolbar>
+    <div  *ngIf="dataManager.length > 0">
+        <p-table [value]="dataManager" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Manager Id</th>    
+                    <th>Employee Name</th>     
+                    <th>Manager Name</th>                   
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>{{ item.employee_id }}</td>
+                    <td>{{ item.manager_id }}</td>
+                    <td>{{ item.employee_name }}</td>  
+                    <td>{{ item.manager_name }}</td>   
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>

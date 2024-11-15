@@ -22,13 +22,13 @@ export class TypesComponent {
   employee_type_code: any = ''
   employee_type_name:any = ''
   loading: boolean = false;
-  visible_model_cretate: boolean = false;
+  visible_model_create: boolean = false;
   visible_model_edit:boolean = false;
   cr_type_code: any = ''
   cr_type_name: any = ''
   cr_level:any = ''
   showDialog() {
-    this.visible_model_cretate = true;
+    this.visible_model_create = true;
   }
   item_edit:any
   Show(item:any){
@@ -81,7 +81,7 @@ export class TypesComponent {
       console.log(data)
       if(data.status == "ok"){
         if(data.message == "successfull."){
-          this.visible_model_cretate=false
+          this.visible_model_create=false
           alert("Create successfull")
         }else{
           alert(data.message)

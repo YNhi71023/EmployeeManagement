@@ -90,4 +90,15 @@ namespace storeworkingapi.Models
         public string position_code { get; set; }
         public string position_name { get; set; }
     }
+
+    public class EmployeeManeger
+    {
+        public int employee_id { get; set; }
+        public int manager_id { get; set; }
+    }
+    public class EmpManFilterModel : EmployeeManeger
+    {
+        public string employee_name { get; set; }
+        public string manager_name { get; set; }
+    }
 }

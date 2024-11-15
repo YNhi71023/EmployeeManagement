@@ -20,21 +20,23 @@ export class EmployeeComponent {
     ) {}
     items: MenuItem[] = [{ label: 'Home' }, { label: 'Employees' }];
     ngOnInit(): void {
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        //Add 'implements OnInit' to the class.
         this.loadPosition();
         this.loadType();
+        this.loadEmployee();
         this.filter();
     }
     home: MenuItem | undefined;
     value2: string | undefined;
     visible_model_createUser: boolean = false;
     visible_model_create: boolean = false;
+    listEmployee: any = [];
     listemployeeType: any = [];
     listemployeePosition: any = [];
+    selectedEmp: any;
     selectedempPosition: any;
     selectedempType: any;
     loading: boolean = false;
+    employee_id:any = ''
     employee_name: any = '';
     sex: any = '';
     card_number: any = '';
@@ -63,6 +65,7 @@ export class EmployeeComponent {
     cr_employee_type_id: any = '';
     cr_position_id: any = '';
     item_edit: any = undefined;
+    item_manager:any = undefined;
     visible_model_edit: boolean = false;
     fileTemplete!: File;
     onChangeFile(event: any) {
@@ -144,6 +147,19 @@ export class EmployeeComponent {
     showDialog() {      
       this.visible_model_create = true;
     }
+    loadEmployee(){
+        this.employeeService.FilterEmployee(0,'',-1,'',2052,'','',0).subscribe((data:any)=>{
+            if (data.status == 'ok') {
+                this.listEmployee = data.data.map((obj) => ({                 
+                    ...obj,
+                    employee_label:
+                        obj.employee_id + ' - ' + obj.employee_name,
+                }));
+            }
+            // this.manager_id = this.employee_id
+            // this.manager_name = this.employee_name
+        })
+    }
     loadPosition() {
         this.employeeService
             .FilterPosition(0, '', '')
@@ -199,10 +215,10 @@ export class EmployeeComponent {
                 if (data.status == 'ok') {
                     this.dataEmp = data.data;
                     console.log(this.dataEmp);
-                } else {
                 }
             });
     }
+    dataManager:any = []
     
     employee_user: any = ''
     create() {
@@ -210,6 +226,8 @@ export class EmployeeComponent {
             .subscribe((data: any) => {
                 console.log(data);
                 this.employee_user = data.employee_id;
+                this.visible_model_create = false
+                this.filter()
             });
     }
     createUser(){
@@ -226,7 +244,15 @@ export class EmployeeComponent {
       console.log(this.item_edit.password)
       this.employeeService.CreateUser(this.item_edit.employee_id, this.item_edit.user_name,this.item_edit.password).subscribe((data:any)=>{
         console.log(data)
+        this.visible_model_createUser = false
       })
+    }
+    createManager(){
+        console.log(this.item_edit.employee_id)
+        console.log(this.item_edit.manager_id)
+        this.employeeService.CreateManager(this.item_edit.employee_id,this.item_edit.manager_id).subscribe((data:any)=>{
+            console.log(data)
+        })
     }
     save(){
         console.log(this.item_edit)

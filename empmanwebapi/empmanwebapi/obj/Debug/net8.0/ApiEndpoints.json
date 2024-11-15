@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "CreateManager",
+    "RelativePath": "api/Employees/CreateManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "em",
+        "Type": "storeworkingapi.Models.EmployeeManeger",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "CreatePosition",
     "RelativePath": "api/Employees/CreatePosition",
     "HttpMethod": "POST",
@@ -90,6 +106,22 @@
       {
         "Name": "em",
         "Type": "storeworkingapi.Models.EmployeeFilterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "FilterManager",
+    "RelativePath": "api/Employees/FilterManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "em",
+        "Type": "storeworkingapi.Models.EmpManFilterModel",
         "IsRequired": true
       }
     ],

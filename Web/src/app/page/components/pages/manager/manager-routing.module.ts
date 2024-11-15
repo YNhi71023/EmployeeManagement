@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TypesComponent } from './types.component';
 import { authGuard } from 'src/app/page/service/auth.guard';
+import { ManagerComponent } from './manager.component';
 
 
 @NgModule({
   imports: [RouterModule.forChild([
-    { path: '', component: TypesComponent, canActivate: [authGuard] }
+    { path: '', component: ManagerComponent, canActivate: [authGuard] }
   ])],
     exports: [RouterModule]
   })
-export class TypesRoutingModule { }
+export class ManagerRoutingModule { }

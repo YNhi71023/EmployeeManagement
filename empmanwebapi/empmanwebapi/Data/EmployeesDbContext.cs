@@ -88,6 +88,28 @@ namespace empmanwebapi.Data
                 }
             }
         }
+        public async Task<DataTable> FilterManager_(int user_login, EmpManFilterModel em)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("[dbo].[EmpMan.GetList]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
+                    command.Parameters.Add(new SqlParameter("@employee_id", em.employee_id));
+                    command.Parameters.Add(new SqlParameter("@employee_name", em.employee_name));
+                    command.Parameters.Add(new SqlParameter("@manager_id", em.manager_id));
+                    command.Parameters.Add(new SqlParameter("@manager_name", em.manager_name));
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+                        return dataTable;
+                    }
+                }
+            }
+        }
         public async Task<DataTable> CreateEmployee_(int user_login, EmployeeCreateModel e)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -151,6 +173,26 @@ namespace empmanwebapi.Data
                     command.Parameters.Add(new SqlParameter("@user_login", user_login));
                     command.Parameters.Add(new SqlParameter("@emp_position_code", et.position_code));
                     command.Parameters.Add(new SqlParameter("@emp_position_name", et.position_name));
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+                        return dataTable;
+                    }
+                }
+            }
+        }
+
+        public async Task<DataTable> CreateManager_(int user_login, EmployeeManeger em)
+        {
+            using (var connection = new SqlConnection(connectionString)) { 
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("[dbo].[EmpMan.Create]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
+                    command.Parameters.Add(new SqlParameter("@employee_id",em.employee_id));
+                    command.Parameters.Add(new SqlParameter("@manager_id", em.manager_id));
                     using (var adapter = new SqlDataAdapter(command))
                     {
                         DataTable dataTable = new DataTable();
