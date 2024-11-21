@@ -32,7 +32,7 @@ export class EmployeeComponent {
     listEmployee: any = [];
     listemployeeType: any = [];
     listemployeePosition: any = [];
-    selectedEmp: any;
+    selectedMan: any;
     selectedempPosition: any;
     selectedempType: any;
     loading: boolean = false;
@@ -44,6 +44,7 @@ export class EmployeeComponent {
     mail: any = '';
     mobile: any = '';
     position_id: any = '';
+    manager_id:any=';'
     checked: boolean = false;
     date: Date | undefined;
     image_before_card: any = '';
@@ -68,74 +69,26 @@ export class EmployeeComponent {
     item_manager:any = undefined;
     visible_model_edit: boolean = false;
     fileTemplete!: File;
-    onChangeFile(event: any) {
+    onChangeFile(event: any, img: string) {
         this.fileTemplete = event.target.files[0];
-        this.saveFile()
+        this.saveFile(img);
     }
-    saveFile() {
+    
+    saveFile(img: string) {
         const formDataUpload = new FormData();
         formDataUpload.append('files', this.fileTemplete);
         this.uploadService.uploadImage(this.fileTemplete).subscribe(
             (response) => {
-              console.log(response);
-               this.item_edit.image_profile = response.url
+                console.log(response);
+                this[img] = response.url; 
+                this.item_edit.image_profile = response.url;
             },
             (error) => {
-              console.error('File upload failed', error);
+                console.error('File upload failed', error);
             }
-          );
+        );
     }
-    onChangeFileimgprofile(event: any) {
-        this.fileTemplete = event.target.files[0];
-        this.saveFileimgprofile()
-    }
-    saveFileimgprofile() {
-        const formDataUpload = new FormData();
-        formDataUpload.append('files', this.fileTemplete);
-        this.uploadService.uploadImage(this.fileTemplete).subscribe(
-            (response) => {
-              console.log(response);
-               this.cr_image_profile = response.url
-            },
-            (error) => {
-              console.error('File upload failed', error);
-            }
-          );
-    }
-    onChangeFileimgbefore(event: any) {
-        this.fileTemplete = event.target.files[0];
-        this.saveFileimgbefore()
-    }
-    saveFileimgbefore() {
-        const formDataUpload = new FormData();
-        formDataUpload.append('files', this.fileTemplete);
-        this.uploadService.uploadImage(this.fileTemplete).subscribe(
-            (response) => {
-              console.log(response);
-               this.cr_image_before_card = response.url
-            },
-            (error) => {
-              console.error('File upload failed', error);
-            }
-          );
-    }
-    onChangeFileimgafter(event: any) {
-        this.fileTemplete = event.target.files[0];
-        this.saveFileimgafter()
-    }
-    saveFileimgafter() {
-        const formDataUpload = new FormData();
-        formDataUpload.append('files', this.fileTemplete);
-        this.uploadService.uploadImage(this.fileTemplete).subscribe(
-            (response) => {
-              console.log(response);
-               this.cr_image_after_card = response.url
-            },
-            (error) => {
-              console.error('File upload failed', error);
-            }
-          );
-    }    
+    
     Show(item: any) {
         console.log(item);
         this.item_edit = item;
@@ -147,18 +100,16 @@ export class EmployeeComponent {
     showDialog() {      
       this.visible_model_create = true;
     }
-    loadEmployee(){
-        this.employeeService.FilterEmployee(0,'',-1,'',2052,'','',0).subscribe((data:any)=>{
+    loadEmployee() {
+        this.employeeService.FilterEmployee(0, '', -1, '', 2052, '', '', 0,0).subscribe((data: any) => {
             if (data.status == 'ok') {
                 this.listEmployee = data.data.map((obj) => ({                 
                     ...obj,
-                    employee_label:
-                        obj.employee_id + ' - ' + obj.employee_name,
+                    employee_label: obj.employee_id + ' - ' + obj.employee_name,
                 }));
+                
             }
-            // this.manager_id = this.employee_id
-            // this.manager_name = this.employee_name
-        })
+        });
     }
     loadPosition() {
         this.employeeService
@@ -197,6 +148,7 @@ export class EmployeeComponent {
                 this.selectedempPosition == undefined
                     ? 0
                     : this.selectedempPosition.position_id,
+            manager_id:this.selectedMan==undefined ? 0 : this.selectedMan.employee_id
         };
         this.employeeService
             .FilterEmployee(
@@ -207,7 +159,8 @@ export class EmployeeComponent {
                 param.type_id,
                 this.mail,
                 this.mobile,
-                param.position_id
+                param.position_id,
+                param.manager_id
             )
             .subscribe((data: any) => {
                 console.log(data);
@@ -221,14 +174,46 @@ export class EmployeeComponent {
     dataManager:any = []
     
     employee_user: any = ''
+    convertSex(x: string): number {
+        if (x == 'Nữ') {
+            return 1;
+        } else if (x == 'Nam') {
+            return 0;
+        } else {
+            return -1; 
+        }
+    }
+    showError: boolean = false;
     create() {
-        this.employeeService.CreateEmployee(this.cr_employee_name,this.cr_sex,this.cr_card_number,this.cr_image_before_card,this.cr_image_after_card,this.cr_birthday,this.cr_address,this.cr_mail,this.cr_mobile,this.cr_image_profile,this.cr_employee_type_id,this.cr_position_id)
+        const sexValue = this.convertSex(this.cr_sex);
+        if (!this.cr_employee_name||!sexValue||!this.cr_card_number||!this.cr_image_before_card||!this.cr_image_after_card||!this.cr_birthday||!this.cr_address||!this.cr_mail||!this.cr_mobile||!this.cr_image_profile||!this.cr_employee_type_id||!this.cr_position_id) {
+            this.showError = true;
+            return;
+        }
+        this.showError = false;
+        console.log('Data is valid, submitting...');
+        this.employeeService.CreateEmployee(this.cr_employee_name,sexValue,this.cr_card_number,this.cr_image_before_card,this.cr_image_after_card,this.cr_birthday,this.cr_address,this.cr_mail,this.cr_mobile,this.cr_image_profile,this.cr_employee_type_id,this.cr_position_id)
             .subscribe((data: any) => {
                 console.log(data);
                 this.employee_user = data.employee_id;
                 this.visible_model_create = false
                 this.filter()
             });
+    }
+    resetFrom(){
+        const sexValue = this.convertSex(this.cr_sex);
+        this.cr_employee_name='',
+        this.cr_sex='',
+        this.cr_card_number='',
+        this.cr_image_before_card=null,
+        this.cr_image_after_card=null,
+        this.cr_birthday='',
+        this.cr_address='',
+        this.cr_mail='',
+        this.cr_mobile='',
+        this.cr_image_profile=null,
+        this.cr_employee_type_id=null,
+        this.cr_position_id=null
     }
     createUser(){
         if(this.item_edit.user_name==''){
@@ -252,13 +237,68 @@ export class EmployeeComponent {
         console.log(this.item_edit.manager_id)
         this.employeeService.CreateManager(this.item_edit.employee_id,this.item_edit.manager_id).subscribe((data:any)=>{
             console.log(data)
+            alert("Create manager successfull")
+            this.filter()
         })
     }
     save(){
-        console.log(this.item_edit)
-        this.employeeService.UpdateEmployee(this.item_edit.employee_id,this.item_edit.employee_name,this.item_edit.sex,this.item_edit.card_number,this.item_edit.image_before_card,this.item_edit.image_after_card,this.item_edit.birthday,this.item_edit.address,this.item_edit.mail,this.item_edit.mobile,this.item_edit.image_profile,this.item_edit.employee_type_id,this.item_edit.position_id).subscribe((data:any)=>{
+        const sexValue = this.convertSex(this.item_edit.sex);
+        // console.log(sexValue)
+        // console.log(this.item_edit.image_profile)
+        // console.log(this.item_edit)
+        this.employeeService.UpdateEmployee(this.item_edit.employee_id,this.item_edit.employee_name,sexValue,this.item_edit.card_number,this.item_edit.image_before_card,this.item_edit.image_after_card,this.item_edit.birthday,this.item_edit.address,this.item_edit.mail,this.item_edit.mobile,this.item_edit.image_profile,this.item_edit.employee_type_id,this.item_edit.position_id).subscribe((data:any)=>{
             console.log(data)
             this.visible_model_edit = false;
+            this.filter()
+        })
+    }
+    visible_model_createPosition: boolean = false
+    showcreatePositiom() {
+        this.visible_model_createPosition = true;
+    }
+    cr_position_code: any = ''
+    cr_position_name: any = ''
+    createPosition(){
+        if(this.cr_position_code == ''){
+          alert("enter position code")
+          return 
+        }
+        if(this.cr_position_name == ''){
+          alert("enter position name")
+          return
+        }
+        if(this.cr_position_code.length < 2){
+          alert("add position code")
+          return
+        }
+        if(this.cr_position_name.length < 5){
+          alert("add position name")
+          return
+        }
+        this.employeeService.CreatePosition(this.cr_position_code,this.cr_position_name).subscribe((data:any)=>{
+          console.log(data)
+          if(data.status == "ok"){
+            if(data.message == "successfull."){
+              this.visible_model_createPosition=false
+              alert("Create successfull")
+              this.loadPosition()    
+            }else{
+              alert(data.message)
+              this.cr_position_code = ''
+              this.cr_position_name = '' 
+                  
+            }       
+          }else{
+            alert(data.message)
+          }
+          this.cr_position_code = ''
+          this.cr_position_name = ''
+        })
+    }
+    updateManager(){
+        this.employeeService.UpdateManager(this.item_edit.employee_id,this.item_edit.manager_id).subscribe((data:any)=>{
+            console.log(data)
+            alert("Update manager successfull")
             this.filter()
         })
     }

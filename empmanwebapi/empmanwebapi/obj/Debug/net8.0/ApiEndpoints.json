@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Employees/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "c",
+        "Type": "storeworkingapi.Models.ChangePassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "CreateEmployee",
     "RelativePath": "api/Employees/CreateEmployee",
     "HttpMethod": "POST",
@@ -113,22 +129,6 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
-    "Method": "FilterManager",
-    "RelativePath": "api/Employees/FilterManager",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "em",
-        "Type": "storeworkingapi.Models.EmpManFilterModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "FilterPosition",
     "RelativePath": "api/Employees/FilterPosition",
     "HttpMethod": "POST",
@@ -177,6 +177,22 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.EmployeesController",
+    "Method": "UpdateManager",
+    "RelativePath": "api/Employees/UpdateManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "e",
+        "Type": "storeworkingapi.Models.EmployeeManeger",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.EmployeesController",
     "Method": "UpdatePosition",
     "RelativePath": "api/Employees/UpdatePosition",
     "HttpMethod": "POST",
@@ -202,6 +218,70 @@
       {
         "Name": "et",
         "Type": "storeworkingapi.Models.EmpTypes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "CreateLocationType",
+    "RelativePath": "api/Store/CreateLocationType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterLocation",
+    "RelativePath": "api/Store/FilterLocation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationFilter",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterLocationType",
+    "RelativePath": "api/Store/FilterLocationType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "t",
+        "Type": "empmanwebapi.Models.LocationType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "UpdateLocationType",
+    "RelativePath": "api/Store/UpdateLocationType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationTypeUpdate",
         "IsRequired": true
       }
     ],

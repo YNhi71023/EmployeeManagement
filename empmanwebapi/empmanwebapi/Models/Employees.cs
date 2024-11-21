@@ -47,6 +47,7 @@ namespace storeworkingapi.Models
         public string mail { get; set; }
         public string mobile { get; set; }
         public int position_id { get; set; }
+        public int manager_id { get; set; }
     }
     public class EmpTypes: EmpTypeModel
     {
@@ -90,7 +91,7 @@ namespace storeworkingapi.Models
         public string position_code { get; set; }
         public string position_name { get; set; }
     }
-
+    
     public class EmployeeManeger
     {
         public int employee_id { get; set; }
@@ -100,5 +101,10 @@ namespace storeworkingapi.Models
     {
         public string employee_name { get; set; }
         public string manager_name { get; set; }
+    }
+    public class ChangePassword
+    {
+        public string old_password { get; set; }
+        public string new_password { get; set; }
     }
 }

@@ -43,6 +43,19 @@
             <h6>Card Number</h6>
             <input pInputText placeholder="enter a employee cardnumber" [(ngModel)]="card_number"/>
         </div>
+        <div class="field col-12 md:col-3">
+            <h6>Manager:</h6>
+            <p-dropdown
+                [filter]="true"
+                filterBy="employee_label"
+                [showClear]="true"
+                [options]="listEmployee"
+                [(ngModel)]="selectedMan"
+                optionLabel="employee_label"
+                placeholder="Select a Manager"
+            />
+           
+        </div>
     </div>
 </div>
 <p-toolbar>
@@ -96,6 +109,7 @@
                 <th class="text-center">Birthday</th>
                 <th class="text-center">Mobile</th>
                 <th>Address</th>
+                <th>Sex</th>
                 <th>Mail</th>               
                 <th>Type</th>
                 <th>Position</th>
@@ -111,6 +125,7 @@
                 <td class="text-center">{{ item.birthday }}</td>
                 <td class="text-center">{{ item.mobile }}</td>
                 <td>{{item.address}}</td>
+                <td>{{item.sex}}</td>
                 <td>{{item.mail}}</td>           
                 <td>{{item.employee_type_name}}</td>
                 <td>{{item.position_name}}</td>
@@ -142,159 +157,263 @@
         [breakpoints]="{ '960px': '75vw' }"
     >
         
-        <div class="flex-auto p-2">
-            <div class="card flex flex-column justify-content-center">             
-                <div class="flex-auto mb-3">
-                    <label for="name" class="font-bold block mb-2"
-                        >Employee Name</label
-                    >
-                    <input
-                        pInputText
-                        id="name"
-                        [(ngModel)]="cr_employee_name"                      
-                        class="flex-auto"
-                        autocomplete="off"
-                    />
-                </div>
-                <div class="flex-auto mb-3">
-                    <label for="sex" class="font-bold block mb-2"
-                        >Sex</label
-                    >
-                    <input
-                        pInputText
-                        id="sex"
-                        [(ngModel)]="cr_sex"                      
-                        class="flex-auto"
-                        autocomplete="off"
-                    />
-                </div>
-                <div class="flex-auto mb-3">
-                    <label for="cardnumber" class="font-bold block mb-2"
-                        >Card Number</label>
-                    <p-inputMask 
-                        mask="9999-9999-9999" 
-                        [(ngModel)]="cr_card_number"
-                        placeholder="____-____-____" />
-                </div>
-                
-                <div class="card flex justify-content-center">
-                    <input 
-                        class="form-control"
-                        chooseIcon="pi pi-upload"
-                        type="file"
-                        maxFileSize="1000000" 
-                        (change)="onChangeFileimgbefore($event)"
-                        #myInputFile />
-                </div>
-               
-                <div class="card flex justify-content-center">
-                    <input 
-                        class="form-control"
-                        chooseIcon="pi pi-upload"
-                        type="file"
-                        maxFileSize="1000000" 
-                        (change)="onChangeFileimgafter($event)"
-                        #myInputFile />
-                </div>
-                
-                <div class="flex-auto">
-                    <div class="flex align-items-center justify-content-start">
-                        <div class="flex-auto mb-3 mr-2">
-                            <label for="birthday" class="font-bold block mb-2"
-                                >Birthday Date</label
+        <div class="flex-auto p-2" style="width: 800px">
+            <div class="p-fluid p-formgrid grid">   
+                <div class="field col-12 md:col-6">
+                    <div class="image-container">
+                        <div class="image-item">
+                            <label class="font-bold block mb-2">Image Profile</label>
+                            <div class="image-frame">
+                                <p-image
+                                    *ngIf="cr_image_profile"
+                                    [src]="cr_image_profile"
+                                    alt="Profile Image"
+                                    width="200"
+                                    height="200"
+                                    [preview]="true"
+                                ></p-image>
+                                <div *ngIf="!cr_image_profile" class="placeholder">
+                                    <span>No Image</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="image-item">
+                            <label class="font-bold block mb-2">Image Before Card</label>
+                            <div class="image-frame">
+                                <p-image
+                                    *ngIf="cr_image_before_card"
+                                    [src]="cr_image_before_card"
+                                    alt="Before Card Image"
+                                    width="200"
+                                    height="200"
+                                    [preview]="true"
+                                ></p-image>
+                                <div *ngIf="!cr_image_before_card" class="placeholder">
+                                    <span>No Image</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="image-item">
+                            <label class="font-bold block mb-2">Image After Card</label>
+                            <div class="image-frame">
+                                <p-image
+                                    *ngIf="cr_image_after_card"
+                                    [src]="cr_image_after_card"
+                                    alt="After Card Image"
+                                    width="200"
+                                    height="200"
+                                    [preview]="true"
+                                ></p-image>
+                                <div *ngIf="!cr_image_after_card" class="placeholder">
+                                    <span>No Image</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>   
+                <div class="field col-12 md:col-6">
+                    <div class="card flex flex-column justify-content-center">
+                        <div class="flex-auto mb-3">
+                            <label for="name" class="font-bold block mb-2 required"
+                                >Employee Name</label
                             >
                             <input
-                            pInputText
-                            id="name1"
-                            class="text-center font-bold mr-2 mt-2"
-                            type="date"
-                            [(ngModel)]="cr_birthday"
-                        />
-                           
-                        </div>
-                       
-                    </div> 
-                </div>
-                <div class="flex-auto mb-3">
-                    <label for="address" class="font-bold block mb-2"
-                        >Address</label
-                    >
-                    <input
-                        pInputText
-                        id="address"
-                        [(ngModel)]="cr_address"
-                        class="flex-auto"
-                        autocomplete="off"
-                    />
-                </div>
-                <div class="flex-auto mb-3">
-                    <label for="mail" class="font-bold block mb-2">Email</label>
-                    <input
-                        pInputText
-                        id="mail"
-                        [(ngModel)]="cr_mail"
-                        class="flex-auto"
-                        autocomplete="off"
-                    />
-                </div>
-                <div class="flex-auto mb-3">
-                    <label for="mobile" class="font-bold block mb-2"
-                        >Mobile</label>
-                    <p-inputMask 
-                        mask="9999-999-999" 
-                        [(ngModel)]="cr_mobile"
-                        placeholder="(+84)__-___-___" />
-                </div>
-                
-                <div class="card flex justify-content-center">
-                    <input 
-                        class="form-control"
-                        chooseIcon="pi pi-upload"
-                        type="file"
-                        maxFileSize="1000000" 
-                        (change)="onChangeFileimgprofile($event)"
-                        #myInputFile />
-                </div>
-                <div class="flex-auto mb-3">
-                     <label class="font-bold block mb-2"
-                                >Employee Type</label
-                            >                       
-                            <p-dropdown
-                                [filter]="true"
-                                filterBy="employee_type_name"
-                                [showClear]="true"
-                                [options]="listemployeeType"
-                                [(ngModel)]="cr_employee_type_id"
-                                optionValue = "employee_type_id"
-                             
-                                optionLabel="employee_type_name"
-                                placeholder="Select a Employee Type"
+                                pInputText
+                                id="name"
+                                [(ngModel)]="cr_employee_name"                      
+                                class="flex-auto"
+                                autocomplete="off"
                             />
-                </div>
-                <div class="flex-auto mb-3">
-                    <label class="font-bold block mb-2"
-                        >Employee Position</label
-                    >
-                    <p-dropdown
-                        [filter]="true"
-                        filterBy="position_name"
-                        [showClear]="true"
-                        [options]="listemployeePosition"
-                        [(ngModel)]="cr_position_id"
-                        optionValue = "position_id"
-                        optionLabel="position_name"
-                        placeholder="Select a Employee Position"
-                    />
-                </div>
+                            <small *ngIf="!cr_employee_name && showError" class="p-error">
+                                Employee Name is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="sex" class="font-bold block mb-2 required"
+                                >Sex</label
+                            >
+                            <input
+                                pInputText
+                                id="sex"
+                                [(ngModel)]="cr_sex"                      
+                                class="flex-auto"
+                                autocomplete="off"
+                            />
+                            <small *ngIf="!cr_sex && showError" class="p-error">
+                                Sex is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="cardnumber" class="font-bold block mb-2 required"
+                                >Card Number</label>
+                            <p-inputMask 
+                                mask="9999-9999-9999" 
+                                [(ngModel)]="cr_card_number"
+                                placeholder="____-____-____" />
+                                <small *ngIf="!cr_card_number && showError" class="p-error">
+                                    Card Number is required.
+                                </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label class="font-bold block mb-2 required">Image Before Card</label>
+                            <input 
+                                class="form-control"
+                                chooseIcon="pi pi-upload"
+                                type="file"
+                                maxFileSize="1000000" 
+                                (change)="onChangeFile($event, 'cr_image_before_card')"
+                                #myInputFile />
+                                <small *ngIf="!cr_image_before_card && showError" class="p-error">
+                                    Image Before Card is required.
+                                </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label class="font-bold block mb-2 required">Image After Card</label>
+                            <input 
+                                class="form-control"
+                                chooseIcon="pi pi-upload"
+                                type="file"
+                                maxFileSize="1000000" 
+                                (change)="onChangeFile($event, 'cr_image_after_card')"
+                                #myInputFile />
+                                <small *ngIf="!cr_image_after_card && showError" class="p-error">
+                                    Image After Card is required.
+                                </small>
+                        </div>
+                        <div class="flex-auto">
+                            <div class="flex align-items-center justify-content-start">
+                                <div class="flex-auto mb-3 mr-2">
+                                    <label for="birthday" class="font-bold block mb-2 required"
+                                        >Birthday Date</label
+                                    >
+                                    <input
+                                    pInputText
+                                    id="name1"
+                                    class="text-center font-bold mr-2 mt-2"
+                                    type="date"
+                                    [(ngModel)]="cr_birthday"
+                                />
+                                <small *ngIf="!cr_birthday && showError" class="p-error">
+                                    Birthday Date is required.
+                                </small>
+                                </div>
+                               
+                            </div> 
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="address" class="font-bold block mb-2 required"
+                                >Address</label
+                            >
+                            <input
+                                pInputText
+                                id="address"
+                                [(ngModel)]="cr_address"
+                                class="flex-auto"
+                                autocomplete="off"
+                            />
+                            <small *ngIf="!cr_address && showError" class="p-error">
+                                Address is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="mail" class="font-bold block mb-2 required">Email</label>
+                            <input
+                                pInputText
+                                id="mail"
+                                [(ngModel)]="cr_mail"
+                                class="flex-auto"
+                                autocomplete="off"
+                            />
+                            <small *ngIf="!cr_mail && showError" class="p-error">
+                                Email is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="mobile" class="font-bold block mb-2 required"
+                                >Mobile</label>
+                            <p-inputMask 
+                                mask="9999-999-999" 
+                                [(ngModel)]="cr_mobile"
+                                placeholder="(+84)__-___-___" />
+                                <small *ngIf="!cr_mobile && showError" class="p-error">
+                                    Mobile is required.
+                                </small>
+                        </div>
+                        <label class="font-bold block mb-2 required">Image Profile</label>
+                        <div class="flex-auto mb-3">
+                            <input 
+                                class="form-control"
+                                chooseIcon="pi pi-upload"
+                                type="file"
+                                maxFileSize="1000000" 
+                                [(ngModel)]="cr_image_profile"
+                                (change)="onChangeFile($event, 'cr_image_profile')"
+                                #myInputFile />
+                                <small *ngIf="!cr_image_profile && showError" class="p-error">
+                                    Image Profile is required.
+                                </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                             <label class="font-bold block mb-2 required"
+                                        >Employee Type</label
+                                    >                       
+                                    <p-dropdown
+                                        [filter]="true"
+                                        filterBy="employee_type_name"
+                                        [showClear]="true"
+                                        [options]="listemployeeType"
+                                        [(ngModel)]="cr_employee_type_id"
+                                        optionValue = "employee_type_id"
+                                        optionLabel="employee_type_name"
+                                        placeholder="Select a Employee Type"
+                                    />
+                                    <small *ngIf="!cr_employee_type_id && showError" class="p-error">
+                                        Employee Type is required.
+                                    </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label class="font-bold block mb-2 required">Employee Position</label>
+                            <div class="flex align-items-center gap-2">
+                                <p-dropdown
+                                    class="flex-1"
+                                    [filter]="true"
+                                    filterBy="position_name"
+                                    [showClear]="true"
+                                    [options]="listemployeePosition"
+                                    [(ngModel)]="cr_position_id"
+                                    optionValue="position_id"
+                                    optionLabel="position_name"
+                                    placeholder="Select a Employee Position"
+                                ></p-dropdown>
+                                <button
+                                    pButton
+                                    icon="pi pi-plus"
+                                    class="custom-button-with-border"
+                                    (click)="showcreatePositiom()"
+                                ></button>
+                                <small *ngIf="!cr_position_id && showError" class="p-error">
+                                    Employee Position is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+
+                
             </div>
         </div>
-
+        
         <ng-template pTemplate="footer">
             <p-button
                 label="Cancel"
                 [text]="true"
                 severity="secondary"
-                (onClick)="visible_model_create = false"
+                (onClick)="resetFrom();visible_model_create = false"
             />
             <p-button
                 label="Save"
@@ -305,7 +424,48 @@
         </ng-template>
     </p-dialog>
 </div>
-
+<div class=" flex justify-content-center">
+    <p-dialog 
+        header="Header" 
+        [(visible)]="visible_model_createPosition" 
+        [modal]="true" 
+        [style]="{ width: '25rem' }"
+        >
+            <ng-template pTemplate="header">
+                <div class="inline-flex align-items-center justify-content-center gap-2">
+                   
+                    <span class="font-bold white-space-nowrap">
+                        Create
+                    </span>
+                </div>
+            </ng-template>
+            <span class="p-text-secondary block mb-5">Create Position</span>
+            <div class="flex align-items-center gap-3 mb-3">
+                <label for="positioncode" class="font-semibold w-6rem">
+                    Position code
+                </label>
+                <input pInputText id="positioncode" [(ngModel)]="cr_position_code" class="flex-auto" autocomplete="off" />
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+                <label for="positionname" class="font-semibold w-6rem">Position name</label>
+                <input pInputText id="positionname" [(ngModel)]="cr_position_name" class="flex-auto" autocomplete="off" />
+            </div>
+            <ng-template pTemplate="footer">
+                <p-button 
+                    label="Cancel" 
+                    [text]="true" 
+                    severity="secondary" 
+                    (onClick)="visible = false" />
+                <p-button 
+                    label="Save" 
+                    [outlined]="true" 
+                    severity="secondary"                     
+                   (click)="createPosition()"
+                  />
+            </ng-template>
+            
+    </p-dialog>
+</div>
 <!--UPDATE EMPLOYEES-->
 <div class="flex justify-content-center" *ngIf="item_edit">
     <p-dialog
@@ -313,24 +473,27 @@
         [(visible)]="visible_model_edit"
         [modal]="true"
         showEffect="fade"
-        [breakpoints]="{ '960px': '75vw' }"
-    >
-        <div class="flex-auto p-2">
-            <div class="card flex justify-content-center">
-                <p-image
-                    [src]="item_edit.image_profile"
-                    alt="Image"
-                    width="250"
-                    [preview]="true"
-                />
-            </div>
+        [breakpoints]="{ '1600px': '75vw' }"
+        >
+        <div class="flex-auto p-2" style="width: 1000px">
+            
             <div class="p-fluid p-formgrid grid"> 
                 <div class="field col-12 md:col-6"> 
+                    <div class="card flex justify-content-center items-center">
+                        <div class="flex-auto mb-3 text-center">
+                            <p-image
+                                [src]="item_edit.image_profile"
+                                alt="Image"
+                                width="250"
+                                [preview]="true"
+                            ></p-image>
+                        </div>
+                    </div>
+                    
                     <div class="card flex flex-column justify-content-center" *ngIf="item_edit.user_name != undefined">
                         <div class="flex-auto mb-3">
                             <label for="icondisplay" class="font-bold block mb-2" 
-                                >Username:  </label
-                            >
+                                >Username:  </label>
                             <input
                                 pInputText
                                 id="username"
@@ -383,60 +546,60 @@
                         class="mr-2"
                     ></button>
                     </div>        
-                    <div class="card flex flex-column justify-content-center" >
+                    <div class="card flex flex-column justify-content-center" *ngIf="item_edit.employee_type_id == 2053">
                         <div class="flex-auto mb-3" *ngIf="item_edit.manager_name != undefined">
                             <label for="icondisplay" class="font-bold block mb-2" 
-                                >Manager:  </label
-                            >
-                            <input
-                                pInputText
-                                id="managername"
-                                [(ngModel)]="item_edit.manager_name"
-                                class="flex-auto"
-                                autocomplete="off"
-                            />
-                            <!-- <p-dropdown
+                            >Manager:  </label>
+                            
+                            <p-dropdown
                                 [filter]="true"
                                 filterBy="manager_name"
                                 [showClear]="true"
                                 [options]="listEmployee"  
                                 [(ngModel)]="item_edit.manager_id"
-                                optionValue = "manager_id"        
+                                optionValue = "employee_id"
                                 optionLabel="employee_label"
-                                placeholder="manager_name"
-                            /> -->
-                        </div>
-                        <div class="flex-auto mt-4" *ngIf="item_edit.manager_name == undefined">
-                            <label for="icondisplay" class="font-bold block mb-2" 
-                            >Manager:  </label
-                            >
-                            <input
-                                pInputText
-                                id="managerid"
-                                [(ngModel)]="item_edit.manager_id"
-                                class="flex-auto"
-                                autocomplete="off"
-                            />
+                            ></p-dropdown>
                             <div class="flex justify-content-center mt-2">
-                                <p-button
-                                label="Add Manager"
-                                [outlined]="true"
-                                severity="secondary"
-                                (click)="createManager()"
-                            />
+                                <button
+                                    pButton
+                                    type="button"
+                                    label="Update Manager"
+                                    class="p-button-success mr-2"
+                                    style="width: 150px"
+                                    (click)="updateManager()"
+                                ></button>
                             </div>
+                        </div>
+                        <div class="flex-auto mt-4" *ngIf="item_edit.manager_name == undefined && item_edit.employee_type_id == 2053">
+                            <label for="icondisplay" class="font-bold block mb-2" 
+                                >Manager:  </label>
+                                <p-dropdown
+                                [filter]="true"
+                                filterBy="manager_name"
+                                [showClear]="true"
+                                [options]="listEmployee"  
+                                [(ngModel)]="item_edit.manager_id"
+                                optionValue = "employee_id"
+                                optionLabel="employee_label"
+                            ></p-dropdown>
+                            <div class="flex justify-content-center mt-2">
+                                <button
+                                    pButton
+                                    type="button"
+                                    label="Add Manager"
+                                    class="p-button-success mr-2"
+                                    style="width: 150px"
+                                    (click)="createManager()"
+                                ></button>
+                            </div>
+                            
                         </div>
                     </div>  
                 </div>
                 <div class="field col-12 md:col-6">
                     <div class="flex-auto p-2" *ngIf="item_edit != undefined">
-                        <div class=" flex flex-column justify-content-center">
-                            <!-- <div class="flex align-items-center gap-3 mb-3">
-                                <label for="employeeid" class="font-semibold w-6rem">
-                                    Employee id
-                                </label>
-                                <input pInputText id="employeeid" [(ngModel)]="item_edit.employee_id" class="flex-auto" autocomplete="off" />
-                            </div> -->
+                        <div class="card flex flex-column justify-content-center">
                             <div class="flex-auto mb-3">
                                 <label for="name" class="font-bold block mb-2"
                                     >Employee Name</label
@@ -478,12 +641,10 @@
                                     type="file"
                                     maxFileSize="1000000" 
                                     [(ngModel)]="item_edit.image_before_card"
-                                    (change)="onChangeFileimgbefore($event)"
+                                    (change)="onChangeFile($event, 'item_edit.image_before_card')"
                                     #myInputFile />
                             </div>
-                           
                             <div  class="flex-auto mb-3">
-                                
                                 <label class="font-bold block mb-2">Image After Card</label>
                                 <input 
                                     class="form-control"
@@ -491,14 +652,12 @@
                                     type="file"
                                     maxFileSize="1000000" 
                                     [(ngModel)]="item_edit.image_after_card"
-                                    (change)="onChangeFileimgafter($event)"
+                                    (change)="onChangeFile($event, 'item_edit.image_after_card')"
                                     #myInputFile />
                             </div>
-                            
                             <div class="flex-auto mb-3">
                                 <label for="address" class="font-bold block mb-2"
-                                    >Address</label
-                                >
+                                    >Address</label>
                                 <input
                                     pInputText
                                     id="address"
@@ -525,7 +684,6 @@
                                     [(ngModel)]="item_edit.mobile"
                                     placeholder="(+84)__-___-___" />
                             </div>
-                           
                             <div class="flex-auto">
                                 <div class="flex align-items-center justify-content-start">
                                     <div class="flex-auto mb-3 mr-2">
@@ -552,43 +710,9 @@
                                     type="file"
                                     maxFileSize="1000000" 
                                     [(ngModel)]="item_edit.image_profile"
-                                    (change)="onChangeFileimgafter($event)"
+                                    (change)="onChangeFile($event,'item_edit.image_profile')"
                                     #myInputFile />
                             </div>
-                            <!-- <div class="flex-auto mb-3">
-                                <label class="font-bold block mb-2"
-                                    >Image Before Card</label
-                                >
-                                <div class="upload-container">
-                                    <p-fileUpload
-                                        mode="basic"
-                                        chooseLabel="Choose File"
-                                        chooseIcon="pi pi-upload"
-                                        name="demo[]"
-                                        url="https://www.primefaces.org/cdn/api/upload.php"
-                                        accept="image/*"
-                                        maxFileSize="1000000"
-                                        (onUpload)="(item_edit.image_before_card)"
-                                    >
-                                    </p-fileUpload>
-                                </div>
-                            </div>  -->
-                            <!-- <div class="flex-auto mb-3">
-                                <label class="font-bold block mb-2">Image After Card</label>
-                                <div class="upload-container">
-                                    <p-fileUpload
-                                        mode="basic"
-                                        chooseLabel="Choose File"
-                                        chooseIcon="pi pi-upload"
-                                        name="demo[]"
-                                        url="https://www.primefaces.org/cdn/api/upload.php"
-                                        accept="image/*"
-                                        maxFileSize="1000000"
-                                        (onUpload)="(item_edit.image_after_card)"
-                                    >
-                                    </p-fileUpload>
-                                </div>
-                            </div> -->
                             <div class="flex-auto mb-3">
                                 <label class="font-bold block mb-2"
                                     >Employee Type</label
@@ -605,21 +729,29 @@
                                 />
                             </div>
                             <div class="flex-auto mb-3">
-                                <label class="font-bold block mb-2"
-                                    >Employee Position</label
-                                >
-                                <p-dropdown
-                                    [filter]="true"
-                                    filterBy="position_name"
-                                    [showClear]="true"
-                                    [options]="listemployeePosition"
-                                    [(ngModel)]="item_edit.position_id"
-                                    optionValue = "position_id"
-                                    optionLabel="position_name"
-                                    placeholder="Select a Employee Position"
-                                />
+                                <label class="font-bold block mb-2">Employee Position</label>
+                                <div class="flex align-items-center gap-2">
+                                    <p-dropdown
+                                        class="flex-1"
+                                        [filter]="true"
+                                        filterBy="position_name"
+                                        [showClear]="true"
+                                        [options]="listemployeePosition"
+                                        [(ngModel)]="item_edit.position_id"
+                                        optionValue="position_id"
+                                        optionLabel="position_name"
+                                        placeholder="Select a Employee Position"
+                                    ></p-dropdown>
+                                    <button
+                                        pButton
+                                        icon="pi pi-plus"
+                                        class="custom-button-with-border"
+                                        (click)="showcreatePositiom()"
+                                    ></button>
+                                </div>
                             </div>
-                           
+                            
+                        
                         </div>
                     </div>
                 </div>

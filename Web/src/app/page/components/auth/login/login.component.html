@@ -8,10 +8,26 @@
 
                 <div>
                     <label for="username" class="block text-900 text-xl font-medium mb-2">Username</label>
-                    <input id="username" type="text"  placeholder="Username"  [(ngModel)]="logiObj.username" class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <input 
+                        id="username" 
+                        type="text" 
+                        placeholder="Username"  
+                        [(ngModel)]="logiObj.username" 
+                        (keydown.enter)="onLogin()" 
+                        class="w-full md:w-30rem mb-5" 
+                        style="padding:1rem"
+                    >
 
                     <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1" [(ngModel)]="logiObj.password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+                    <p-password 
+                        id="password1" 
+                        [(ngModel)]="logiObj.password" 
+                        placeholder="Password" 
+                        [toggleMask]="true" 
+                        styleClass="mb-5" 
+                        inputStyleClass="w-full p-3 md:w-30rem" 
+                        (keydown.enter)="onLogin()">
+                    </p-password>
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <div class="flex align-items-center">

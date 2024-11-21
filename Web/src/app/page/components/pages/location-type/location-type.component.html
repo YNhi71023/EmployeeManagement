@@ -1,0 +1,123 @@
+<p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+<div class="card mt-4">
+    <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+            <h6>Location type Code</h6>
+            <input
+                pInputText
+                placeholder="enter a location type code"
+                [(ngModel)]="location_type_code"
+            />
+        </div>
+        <div class="field col-12 md:col-6">
+            <h6>Location type Name</h6>
+            <input
+                pInputText
+                placeholder="enter a location type name"
+                [(ngModel)]="location_type_name"
+            />
+        </div>
+    </div>
+</div>
+<p-toolbar>
+    <div class="p-toolbar-group-left flex flex-wrap">
+        <button
+            pButton
+            type="button"
+            label="Search"
+            (click)="filter()"
+            class="p-button-success mr-2"
+            icon="pi pi-search"
+        ></button>
+        <button
+            pButton
+            type="button"
+            label="Create"
+            (click)="showCreateLocationType()"
+            icon="pi pi-plus"
+            class="mr-2"
+        ></button>
+    </div>
+</p-toolbar>
+<div *ngIf="dataLocationType.length > 0">
+    <p-table [value]="dataLocationType" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.location_type_code }}</td>
+                <td>{{ item.location_type_name }}</td>
+                <td style="width: 20px; padding: 5px">
+                    <span class="cursor-pointer custom-badge">
+                        <i class="pi pi-pencil"></i>
+                    </span>
+                </td>
+                <td style="width: 20px; padding: 5px">
+                    <span class="cursor-pointer custom-badge">
+                        <i class="pi pi-trash"></i>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div class="flex justify-content-center">
+    <p-dialog
+        header="Header"
+        [(visible)]="visible_model_create"
+        [modal]="true"
+        [style]="{ width: '25rem' }"
+    >
+        <ng-template pTemplate="header">
+            <div
+                class="inline-flex align-items-center justify-content-center gap-2"
+            >
+                <span class="font-bold white-space-nowrap"> Create </span>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Create Location Type</span>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="locationtypecode" class="font-semibold w-6rem"
+                >Code</label
+            >
+            <input
+                pInputText
+                id="locationtypecode"
+                [(ngModel)]="cr_location_type_code"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="locationtypename" class="font-semibold w-6rem"
+                >Name</label
+            >
+            <input
+                pInputText
+                id="locationtypename"
+                [(ngModel)]="cr_location_type_name"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="visible = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="create()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>

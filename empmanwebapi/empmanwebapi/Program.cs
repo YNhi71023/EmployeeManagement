@@ -22,6 +22,8 @@ builder.Services.AddDbContext<UsersDbContext>(options =>
     options.UseSqlServer(connect));
 builder.Services.AddDbContext<EmployeesDbContext>(options =>
     options.UseSqlServer(connect));
+builder.Services.AddDbContext<StoreDbContext>(options =>
+    options.UseSqlServer(connect));
 
 builder.Services.AddAuthentication(options =>
 {

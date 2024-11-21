@@ -1,141 +1,196 @@
-<p-breadcrumb 
-    class="max-w-full" 
-    [model]="items" 
-    [home]="home" />
-    <div class="card mt-4">
-        <div class="p-fluid p-formgrid grid">                
-            <div class="field col-12 md:col-6">
-                <h6>Employee type Code</h6>
-                <input pInputText 
-                placeholder="enter a employee type code"  [(ngModel)]="employee_type_code"/>
-            </div>
-            <div class="field col-12 md:col-6">
-                <h6>Employee typenameName</h6>
-                <input pInputText 
-                placeholder="enter a employee type name"  [(ngModel)]="employee_type_name"/>
-            </div>
+<p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+<div class="card mt-4">
+    <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+            <h6>Employee type Code</h6>
+            <input
+                pInputText
+                placeholder="enter a employee type code"
+                [(ngModel)]="employee_type_code"
+            />
+        </div>
+        <div class="field col-12 md:col-6">
+            <h6>Employee typenameName</h6>
+            <input
+                pInputText
+                placeholder="enter a employee type name"
+                [(ngModel)]="employee_type_name"
+            />
         </div>
     </div>
-    <p-toolbar>
-        <div class="p-toolbar-group-left flex flex-wrap">
-            <button pButton type="button" [loading]="loading"  label="Search" (click)="filter()" class="p-button-success mr-2" icon="pi pi-search"></button>
-            <button pButton type="button" label="Create" icon="pi pi-plus" (click)="showDialog()" class="mr-2"></button>
-        </div>
-    
-        <div class="p-toolbar-group-right">
-            <!-- <p-splitButton label="Options" icon="pi pi-check" [model]="items"></p-splitButton> -->
-        </div>
-    </p-toolbar>
-    <div  *ngIf="dataEmployeeType.length > 0">
-        <p-table [value]="dataEmployeeType" [tableStyle]="{ 'min-width': '50rem' }">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>   
-                    <th>Action</th>                            
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-item>
-                <tr>
-                    <td>{{ item.employee_type_code }}</td>
-                    <td>{{ item.employee_type_name }}</td>      
-                    <td style="width: 20px; padding: 5px">                  
-                        <span class="cursor-pointer custom-badge" (click)="Show(item)">
-                            <i class="pi pi-pencil"></i>
-                        </span>
-                    </td>
-                    <td style="width: 20px; padding: 5px">
-                        <span class="cursor-pointer custom-badge" (click)="Show_delete(item)">
-                            <i class="pi pi-trash"></i>
-                        </span>
-                    </td>                         
-                </tr>
-            </ng-template>
-        </p-table>
+</div>
+<p-toolbar>
+    <div class="p-toolbar-group-left flex flex-wrap">
+        <button
+            pButton
+            type="button"
+            [loading]="loading"
+            label="Search"
+            (click)="filter()"
+            class="p-button-success mr-2"
+            icon="pi pi-search"
+        ></button>
+        <button
+            pButton
+            type="button"
+            label="Create"
+            icon="pi pi-plus"
+            (click)="showDialog()"
+            class="mr-2"
+        ></button>
     </div>
-    <div class=" flex justify-content-center">
-        <p-dialog 
-            header="Header" 
-            [(visible)]="visible_model_create" 
-            [modal]="true" 
-            [style]="{ width: '25rem' }"
+
+    <div class="p-toolbar-group-right">
+        <!-- <p-splitButton label="Options" icon="pi pi-check" [model]="items"></p-splitButton> -->
+    </div>
+</p-toolbar>
+<div *ngIf="dataEmployeeType.length > 0">
+    <p-table [value]="dataEmployeeType" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.employee_type_code }}</td>
+                <td>{{ item.employee_type_name }}</td>
+                <td style="width: 20px; padding: 5px">
+                    <span
+                        class="cursor-pointer custom-badge"
+                        (click)="Show(item)"
+                    >
+                        <i class="pi pi-pencil"></i>
+                    </span>
+                </td>
+                <td style="width: 20px; padding: 5px">
+                    <span
+                        class="cursor-pointer custom-badge"
+                        (click)="Show_delete(item)"
+                    >
+                        <i class="pi pi-trash"></i>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div class="flex justify-content-center">
+    <p-dialog
+        header="Header"
+        [(visible)]="visible_model_create"
+        [modal]="true"
+        [style]="{ width: '25rem' }"
+    >
+        <ng-template pTemplate="header">
+            <div
+                class="inline-flex align-items-center justify-content-center gap-2"
             >
-                <ng-template pTemplate="header">
-                    <div class="inline-flex align-items-center justify-content-center gap-2">
-                       
-                        <span class="font-bold white-space-nowrap">
-                            Create
-                        </span>
-                    </div>
-                </ng-template>
-                <span class="p-text-secondary block mb-5">Create Position</span>
-                <div class="flex align-items-center gap-3 mb-3">
-                    <label for="typecode" class="font-semibold w-6rem">
-                        Type code
-                    </label>
-                    <input pInputText id="typecode" [(ngModel)]="cr_type_code" class="flex-auto" autocomplete="off" />
-                </div>
-                <div class="flex align-items-center gap-3 mb-5">
-                    <label for="typename" class="font-semibold w-6rem">Type name</label>
-                    <input pInputText id="typename" [(ngModel)]="cr_type_name" class="flex-auto" autocomplete="off" />
-                </div>
-                <div class="flex align-items-center gap-3 mb-5">
-                    <label for="level" class="font-semibold w-6rem">Level</label>
-                    <input pInputText id="level" [(ngModel)]="cr_level" class="flex-auto" autocomplete="off" />
-                </div>
-                <ng-template pTemplate="footer">
-                    <p-button 
-                        label="Cancel" 
-                        [text]="true" 
-                        severity="secondary" 
-                        (onClick)="visible = false" />
-                    <p-button 
-                        label="Save" 
-                        [outlined]="true" 
-                        severity="secondary"                     
-                       (click)="create()"
-                      />
-                </ng-template>
-        </p-dialog>
-    </div>
-    <div class=" flex justify-content-center" *ngIf="item_edit">
-        <p-dialog 
-            header="Header" 
-            [(visible)]="visible_model_edit" 
-            [modal]="true" 
-            [style]="{ width: '25rem' }"
+                <span class="font-bold white-space-nowrap"> Create </span>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Create Position</span>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="typecode" class="font-semibold w-6rem">
+                Type code
+            </label>
+            <input
+                pInputText
+                id="typecode"
+                [(ngModel)]="cr_type_code"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="typename" class="font-semibold w-6rem">Type name</label>
+            <input
+                pInputText
+                id="typename"
+                [(ngModel)]="cr_type_name"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="level" class="font-semibold w-6rem">Level</label>
+            <input
+                pInputText
+                id="level"
+                [(ngModel)]="cr_level"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="visible = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="create()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>
+<div class="flex justify-content-center" *ngIf="item_edit">
+    <p-dialog
+        header="Header"
+        [(visible)]="visible_model_edit"
+        [modal]="true"
+        [style]="{ width: '25rem' }"
+    >
+        <ng-template pTemplate="header">
+            <div
+                class="inline-flex align-items-center justify-content-center gap-2"
             >
-                <ng-template pTemplate="header">
-                    <div class="inline-flex align-items-center justify-content-center gap-2">
-                       
-                        <span class="font-bold white-space-nowrap ">
-                             Edit 
-                        </span>
-                    </div>
-                </ng-template>
-                <span class="p-text-secondary block mb-5">Edit Type</span>
-                <div class="flex align-items-center gap-3 mb-3">
-                    <label for="typecode" class="font-semibold w-6rem">
-                        Type code
-                    </label>
-                    <input pInputText id="typecode" [(ngModel)]="item_edit.employee_type_code"[disabled]="true" class="flex-auto" autocomplete="off" />
-                </div>
-                <div class="flex align-items-center gap-3 mb-5">
-                    <label for="typename" class="font-semibold w-6rem">Type name</label>
-                    <input pInputText id="typename" [(ngModel)]="item_edit.employee_type_name" class="flex-auto" autocomplete="off" />
-                </div>                           
-                <ng-template pTemplate="footer">
-                    <p-button 
-                        label="Cancel" 
-                        [text]="true" 
-                        severity="secondary" 
-                        (onClick)="visible_model_edit = false" />
-                    <p-button 
-                        label="Save" 
-                        [outlined]="true" 
-                        severity="secondary"     
-                        (click)="save()"                                      
-                      />
-                </ng-template>
-        </p-dialog>
-    </div>
+                <span class="font-bold white-space-nowrap"> Edit </span>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Edit Type</span>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="typecode" class="font-semibold w-6rem">
+                Type code
+            </label>
+            <input
+                pInputText
+                id="typecode"
+                [(ngModel)]="item_edit.employee_type_code"
+                [disabled]="true"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="typename" class="font-semibold w-6rem">Type name</label>
+            <input
+                pInputText
+                id="typename"
+                [(ngModel)]="item_edit.employee_type_name"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="visible_model_edit = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="save()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>

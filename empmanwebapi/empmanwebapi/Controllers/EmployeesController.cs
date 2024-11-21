@@ -86,28 +86,6 @@ namespace empmanwebapi.Controllers
 
             return BadRequest("Error filter employee position");
         }
-        [HttpPost("[action]")]
-        [SercurityToken]
-        public async Task<IActionResult> FilterManager([FromBody] EmpManFilterModel em)
-        {
-            ReponseModel r = new ReponseModel();
-            DataTable data = await _context.FilterManager_(user_login, em);
-            if (data.Rows.Count == 0)
-            {
-                r.status = "error";
-                r.message = "employee manager not found";
-                return Ok(r);
-            }
-            if (data.Rows.Count > 0)
-            {
-                r.status = "ok";
-                r.message = "filter successful";
-                r.data = data;
-                return Ok(r);
-            }
-
-            return BadRequest("Error filter employee manager");
-        }
 
         [HttpPost("[action]")]
         [SercurityToken]
@@ -216,7 +194,27 @@ namespace empmanwebapi.Controllers
             }
             return BadRequest("Error update employee ");
         }
-
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> UpdateManager([FromBody] EmployeeManeger e)
+        {
+            ReponseModel r = new ReponseModel();
+            if (e == null)
+            {
+                r.status = "error";
+                r.message = "please input maneger";
+                return Ok(r);
+            };
+            DataTable update = await _context.UpdateManager_(user_login, e);
+            if (update.Rows.Count == 1)
+            {
+                r.status = "ok";
+                r.message = "update successful";
+                r.data = e;
+                return Ok(r);
+            }
+            return BadRequest("Error update manager ");
+        }
         [HttpPost("[action]")]
         [SercurityToken]
         public async Task<IActionResult> UpdateType([FromBody] EmpTypes et)
@@ -260,6 +258,27 @@ namespace empmanwebapi.Controllers
                 return Ok(r);
             }
             return BadRequest("Error update employee position");
+        }
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePassword c)
+        {
+            ReponseModel r = new ReponseModel();
+            if (c == null)
+            {
+                r.status = "error";
+                r.message = "please input position";
+                return Ok(r);
+            };
+            DataTable updateposition = await _context.ChangePassword_(user_login, c);
+            if (updateposition.Rows.Count == 1)
+            {
+                r.status = "ok";
+                r.message = "change password successful";
+                r.data = updateposition;
+                return Ok(r);
+            }
+            return BadRequest("Error change password");
         }
         [HttpPost("[action]")]
         [SercurityToken]

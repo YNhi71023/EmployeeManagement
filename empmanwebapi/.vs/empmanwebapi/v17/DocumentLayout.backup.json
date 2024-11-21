@@ -3,48 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\data\\storedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\data\\storedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\data\\employeesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\data\\employeesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\data\\usersdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\data\\usersdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\models\\employees.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\models\\employees.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\models\\stores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\models\\stores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\core\\security.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\core\\security.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\core\\apicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\core\\apicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|c:\\users\\y nhi\\documents\\github\\employeemanagement\\empmanwebapi\\empmanwebapi\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB86CF5-51EA-448A-B409-14852ADCC287}|empmanwebapi\\empmanwebapi.csproj|solutionrelative:empmanwebapi\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,107 +38,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmployeesController.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\EmployeesController.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Controllers\\EmployeesController.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\EmployeesController.cs",
-              "RelativeToolTip": "empmanwebapi\\Controllers\\EmployeesController.cs",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAhwJ4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T02:49:19.834Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeesDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\EmployeesDbContext.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Data\\EmployeesDbContext.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\EmployeesDbContext.cs",
-              "RelativeToolTip": "empmanwebapi\\Data\\EmployeesDbContext.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAIAwwLwAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T02:54:13.848Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsersDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\UsersDbContext.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Data\\UsersDbContext.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\UsersDbContext.cs",
-              "RelativeToolTip": "empmanwebapi\\Data\\UsersDbContext.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAkwCMAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T16:09:31.554Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "empmanwebapi\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAvwFQAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T15:43:02.422Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Program.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Program.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Program.cs",
-              "RelativeToolTip": "empmanwebapi\\Program.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAUwBcAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T13:39:39.424Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Security.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\CORE\\Security.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\CORE\\Security.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\CORE\\Security.cs",
-              "RelativeToolTip": "empmanwebapi\\CORE\\Security.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAewEcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T16:13:21.696Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Models\\LoginModel.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\LoginModel.cs",
-              "RelativeToolTip": "empmanwebapi\\Models\\LoginModel.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAswBgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T13:01:27.604Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "APIController.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\CORE\\APIController.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\CORE\\APIController.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\CORE\\APIController.cs",
-              "RelativeToolTip": "empmanwebapi\\CORE\\APIController.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAvwCMAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T10:36:28.477Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -163,33 +48,88 @@
               "RelativeDocumentMoniker": "empmanwebapi\\Models\\Employees.cs",
               "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\Employees.cs",
               "RelativeToolTip": "empmanwebapi\\Models\\Employees.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAWwFMAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T02:54:00.703Z"
+              "WhenOpened": "2024-10-29T02:54:00.703Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Users.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\Users.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Models\\Users.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\Users.cs",
-              "RelativeToolTip": "empmanwebapi\\Models\\Users.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAwAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "StoreDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\StoreDbContext.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Data\\StoreDbContext.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\StoreDbContext.cs*",
+              "RelativeToolTip": "empmanwebapi\\Data\\StoreDbContext.cs*",
+              "ViewState": "AgIAADwAAAAAAAAAAAAgwFUAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T15:42:52.179Z"
+              "WhenOpened": "2024-11-21T09:52:05.291Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UploadController.cs",
-              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\UploadController.cs",
-              "RelativeDocumentMoniker": "empmanwebapi\\Controllers\\UploadController.cs",
-              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\UploadController.cs",
-              "RelativeToolTip": "empmanwebapi\\Controllers\\UploadController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBEAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "EmployeesDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\EmployeesDbContext.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Data\\EmployeesDbContext.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Data\\EmployeesDbContext.cs",
+              "RelativeToolTip": "empmanwebapi\\Data\\EmployeesDbContext.cs",
+              "ViewState": "AgIAAMAAAAAAAAAAAAAhwOwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T13:40:32.759Z"
+              "WhenOpened": "2024-11-21T08:47:10.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StoreController.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\StoreController.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Controllers\\StoreController.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\StoreController.cs",
+              "RelativeToolTip": "empmanwebapi\\Controllers\\StoreController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAkwGgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T09:50:11.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeesController.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\EmployeesController.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Controllers\\EmployeesController.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Controllers\\EmployeesController.cs",
+              "RelativeToolTip": "empmanwebapi\\Controllers\\EmployeesController.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAqwNgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T02:49:19.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Stores.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\Stores.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Models\\Stores.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\Stores.cs",
+              "RelativeToolTip": "empmanwebapi\\Models\\Stores.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T09:51:40.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\LoginModel.cs",
+              "RelativeDocumentMoniker": "empmanwebapi\\Models\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\Models\\LoginModel.cs",
+              "RelativeToolTip": "empmanwebapi\\Models\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:17:54.617Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -33,7 +33,8 @@ namespace empmanwebapi.Data
                     command.Parameters.Add(new SqlParameter("@type_id", em.employee_type_id));
                     command.Parameters.Add(new SqlParameter("@mail", em.mail));
                     command.Parameters.Add(new SqlParameter("@mobile", em.mobile));
-                    command.Parameters.Add(new SqlParameter("@position_id", em.position_id));                   
+                    command.Parameters.Add(new SqlParameter("@position_id", em.position_id));
+                    command.Parameters.Add(new SqlParameter("@manager_id", em.manager_id));
                     using (var adapter = new SqlDataAdapter(command))
                     {
                         DataTable dataTable = new DataTable();
@@ -88,28 +89,7 @@ namespace empmanwebapi.Data
                 }
             }
         }
-        public async Task<DataTable> FilterManager_(int user_login, EmpManFilterModel em)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                await connection.OpenAsync();
-                using (var command = new SqlCommand("[dbo].[EmpMan.GetList]", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
-                    command.Parameters.Add(new SqlParameter("@employee_id", em.employee_id));
-                    command.Parameters.Add(new SqlParameter("@employee_name", em.employee_name));
-                    command.Parameters.Add(new SqlParameter("@manager_id", em.manager_id));
-                    command.Parameters.Add(new SqlParameter("@manager_name", em.manager_name));
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        DataTable dataTable = new DataTable();
-                        await Task.Run(() => adapter.Fill(dataTable));
-                        return dataTable;
-                    }
-                }
-            }
-        }
+        
         public async Task<DataTable> CreateEmployee_(int user_login, EmployeeCreateModel e)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -234,7 +214,27 @@ namespace empmanwebapi.Data
                 }
             }
         }
+        public async Task<DataTable> UpdateManager_(int user_login, EmployeeManeger e)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("[dbo].[EmpMan.Update]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
+                    command.Parameters.Add(new SqlParameter("@employee_id", e.employee_id));
+                    command.Parameters.Add(new SqlParameter("@manager_id", e.manager_id));
 
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+                        return dataTable;
+                    }
+                }
+            }
+        }
         public async Task<DataTable> UpdateType_(int user_login, EmpTypes et)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -276,6 +276,28 @@ namespace empmanwebapi.Data
                         await Task.Run(() => adapter.Fill(dataTable));
                         return dataTable;
                        
+                    }
+                }
+            }
+        }
+        public async Task<DataTable> ChangePassword_(int user_login, ChangePassword c)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("[dbo].[UpdatePassword]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@user_login", user_login));
+                    command.Parameters.Add(new SqlParameter("@old_password", c.old_password));
+                    command.Parameters.Add(new SqlParameter("@new_password", c.new_password));
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+                        return dataTable;
+
                     }
                 }
             }
