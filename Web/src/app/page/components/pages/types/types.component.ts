@@ -56,6 +56,11 @@ export class TypesComponent {
       }
     })
   }
+  resetForm(){
+    this.cr_type_code = ''
+    this.cr_type_name = ''
+    this.cr_level = ''
+  }
   create(){
     // if(this.cr_type_code == ''){
     //   alert("enter type code")

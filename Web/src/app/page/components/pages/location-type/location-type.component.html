@@ -53,7 +53,7 @@
                 <td>{{ item.location_type_code }}</td>
                 <td>{{ item.location_type_name }}</td>
                 <td style="width: 20px; padding: 5px">
-                    <span class="cursor-pointer custom-badge">
+                    <span class="cursor-pointer custom-badge" (click)="Show(item)">
                         <i class="pi pi-pencil"></i>
                     </span>
                 </td>
@@ -110,13 +110,66 @@
                 label="Cancel"
                 [text]="true"
                 severity="secondary"
-                (onClick)="visible = false"
+                (onClick)="resetForm();visible_model_create = false"
             />
             <p-button
                 label="Save"
                 [outlined]="true"
                 severity="secondary"
                 (click)="create()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>
+<div class="flex justify-content-center" *ngIf="item_edit">
+    <p-dialog
+        header="Header"
+        [(visible)]="visible_model_edit"
+        [modal]="true"
+        [style]="{ width: '25rem' }"
+    >
+        <ng-template pTemplate="header">
+            <div
+                class="inline-flex align-items-center justify-content-center gap-2"
+            >
+                <span class="font-bold white-space-nowrap"> Edit </span>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Edit Location Type</span>
+        
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="locationtypecode" class="font-semibold w-6rem"> Code </label>
+            <input
+                pInputText
+                id="locationtypecode"
+                [(ngModel)]="item_edit.location_type_code"
+                [disabled]="true"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="locationtypename" class="font-semibold w-6rem">Name</label>
+            <input
+                pInputText
+                id="locationtypename"
+                [(ngModel)]="item_edit.location_type_name"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="visible_model_edit = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="save()"
             />
         </ng-template>
     </p-dialog>

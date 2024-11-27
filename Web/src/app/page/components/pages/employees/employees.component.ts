@@ -200,7 +200,7 @@ export class EmployeeComponent {
                 this.filter()
             });
     }
-    resetFrom(){
+    resetForm(){
         const sexValue = this.convertSex(this.cr_sex);
         this.cr_employee_name='',
         this.cr_sex='',

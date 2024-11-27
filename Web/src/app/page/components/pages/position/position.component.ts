@@ -46,6 +46,7 @@ export class PositionComponent {
   ngOnInit(): void {
     this.filter()
   }
+  
   save(){
     console.log(this.item_edit)
       if(this.item_edit.position_name == ''){
@@ -97,7 +98,10 @@ export class PositionComponent {
       }
     })
   }
-  
+  resetForm(){
+    this.cr_position_code=''
+    this.cr_position_name=''
+  }
   create(){
     if(this.cr_position_code == ''){
       alert("enter position code")

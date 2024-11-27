@@ -1,61 +1,622 @@
-<p-breadcrumb 
-    class="max-w-full" 
-    [model]="items" 
-    [home]="home" />
-    <div class="card mt-4">
-        <div class="p-fluid p-formgrid grid">                
-            <div class="field col-12 md:col-6">
-                <h6>Location Code</h6>
-                <input pInputText 
-                placeholder="enter a location code" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <h6>Location Name</h6>
-                <input pInputText 
-                placeholder="enter a location name" />
-            </div>
+<p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+<div class="card mt-4">
+    <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-3">
+            <h6>Location Code</h6>
+            <input
+                pInputText
+                placeholder="enter a location code"
+                [(ngModel)]="location_code"
+            />
+        </div>
+        <div class="field col-12 md:col-3">
+            <h6>Location Name</h6>
+            <input
+                pInputText
+                placeholder="enter a location name"
+                [(ngModel)]="location_name"
+            />
+        </div>
+        <div class="field col-12 md:col-3">
+            <h6>Location Address</h6>
+            <input
+                pInputText
+                placeholder="enter a location address"
+                [(ngModel)]="location_address"
+            />
+        </div>
+        <div class="field col-12 md:col-3">
+            <h6>Province</h6>
+            <p-dropdown
+                [showClear]="true"
+                [options]="listProvince"
+                [(ngModel)]="selectedProvince"
+                optionLabel="province_label"
+                placeholder="Select Province"
+                (onChange)="
+                    onProvinceChange($event?.value?.province_code || null)
+                "
+            ></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-3">
+            <h6>District</h6>
+            <p-dropdown
+                [showClear]="true"
+                [options]="listDistrict"
+                [(ngModel)]="selectedDistrict"
+                optionLabel="district_label"
+                placeholder="Select District"
+                (onChange)="
+                    onDistrictChange($event?.value?.district_code || null)
+                "
+            ></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-3">
+            <h6>Ward</h6>
+            <p-dropdown
+                [showClear]="true"
+                [options]="listWard"
+                [(ngModel)]="selectedWard"
+                optionLabel="ward_label"
+                placeholder="Select Ward"
+            ></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-3">
+            <h6>Location Type</h6>
+            <p-dropdown
+                [filter]="true"
+                filterBy="locationtype_label"
+                [showClear]="true"
+                [options]="listLocationType"
+                [(ngModel)]="selectedLocationType"
+                optionLabel="locationtype_label"
+                placeholder="Select a Location Type"
+            />
         </div>
     </div>
-    <p-toolbar>
-        <div class="p-toolbar-group-left flex flex-wrap">
-            <button pButton type="button"  label="Search" (click)="filter()" class="p-button-success mr-2" icon="pi pi-search"></button>
-            <button pButton type="button" label="Create" icon="pi pi-plus" class="mr-2"></button>
-        </div>
-    </p-toolbar>
-    <div  *ngIf="dataLocation.length > 0">
-        <p-table [value]="dataLocation" [tableStyle]="{ 'min-width': '50rem' }">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Ward Name</th>
-                    <th>District Name</th>
-                    <th>Province Name</th> 
-                    <th>Location Type</th>  
-                    <th>Action</th>                            
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-item>
-                <tr>
-                    <td>{{ item.location_code }}</td>
-                    <td>{{ item.location_name }}</td>
-                    <td>{{ item.location_address }}</td>
-                    <td>{{ item.ward_name }}</td>
-                    <td>{{ item.district_name }}</td>
-                    <td>{{ item.province_name }}</td>
-                    <td>{{ item.location_type_name }}</td>
-                    <td style="width: 20px; padding: 5px">                  
-                        <span class="cursor-pointer custom-badge">
-                            <i class="pi pi-pencil"></i>
-                        </span>
-                    </td>
-                    <td style="width: 20px; padding: 5px">
-                        <span class="cursor-pointer custom-badge">
-                            <i class="pi pi-trash"></i>
-                        </span>
-                    </td>                         
-                </tr>
-            </ng-template>
-        </p-table>
+</div>
+<p-toolbar>
+    <div class="p-toolbar-group-left flex flex-wrap">
+        <button
+            pButton
+            type="button"
+            label="Search"
+            (click)="filter()"
+            class="p-button-success mr-2"
+            icon="pi pi-search"
+        ></button>
+        <button
+            pButton
+            type="button"
+            label="Create"
+            (click)="Show(items)"
+            icon="pi pi-plus"
+            class="mr-2"
+        ></button>
     </div>
+</p-toolbar>
+<div *ngIf="dataLocation.length > 0">
+    <p-table [value]="dataLocation" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Ward Name</th>
+                <th>District Name</th>
+                <th>Province Name</th>
+                <th>Location Type</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.location_code }}</td>
+                <td>{{ item.location_name }}</td>
+                <td>{{ item.location_address }}</td>
+                <td>{{ item.ward_name }}</td>
+                <td>{{ item.district_name }}</td>
+                <td>{{ item.province_name }}</td>
+                <td>{{ item.location_type_name }}</td>
+                <td style="width: 20px; padding: 5px">
+                    <span class="cursor-pointer custom-badge" (click)="Show(item)">
+                        <i class="pi pi-pencil"></i>
+                    </span>
+                </td>
+                <td style="width: 20px; padding: 5px">
+                    <span class="cursor-pointer custom-badge">
+                        <i class="pi pi-trash"></i>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<!--CREATE LOCATION-->
+<div class="flex justify-content-center">
+    <p-dialog
+        header="Employee Information"
+        [(visible)]="visible_model_create"
+        [modal]="true"
+        showEffect="fade"
+        [breakpoints]="{ '960px': '75vw' }"
+    >
+        <div class="flex-auto p-2" style="width: 800px">
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <div class="image-container">
+                        <div class="image-item">
+                            <label class="font-bold block mb-2"
+                                >Image Overview</label
+                            >
+                            <div class="image-frame">
+                                <p-image
+                                    *ngIf="cr_image_overview"
+                                    [src]="cr_image_overview"
+                                    alt="Image Overview"
+                                    width="200"
+                                    height="200"
+                                    [preview]="true"
+                                ></p-image>
+                                <div
+                                    *ngIf="!cr_image_overview"
+                                    class="placeholder"
+                                >
+                                    <span>No Image</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <div class="card flex flex-column justify-content-center">
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="name"
+                                class="font-bold block mb-2 required"
+                                >Location Code</label
+                            >
+                            <input
+                                pInputText
+                                id="code"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="cr_location_code"
+                            />
+                            <small *ngIf="!cr_location_code && showError" class="p-error">
+                                Location Code is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="name"
+                                class="font-bold block mb-2 required"
+                                >Location Name</label
+                            >
+                            <input
+                                pInputText
+                                id="name"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="cr_location_name"
+                            />
+                            <small *ngIf="!cr_location_name && showError" class="p-error">
+                                Location Name is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Address</label
+                            >
+                            <input
+                                pInputText
+                                id="address"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="cr_location_address"
+                            />
+                            <small *ngIf="!cr_location_address && showError" class="p-error">
+                                Address is required.
+                            </small>
+                        </div>
+                        
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Province</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listProvince"
+                                [(ngModel)]="selectedProvince"
+                                optionLabel="province_label"
+                                placeholder="Select Province"
+                                (onChange)="onProvinceChange($event?.value?.province_code|| null)"
+                            ></p-dropdown>
+                            
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >District</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listDistrict"
+                                [(ngModel)]="selectedDistrict"
+                                optionLabel="district_label"
+                                placeholder="Select District"
+                                (onChange)="onDistrictChange($event?.value?.district_code|| null)"
+                            ></p-dropdown>
+                            <small *ngIf="!cr_district_code && showError" class="p-error">
+                                District is required.
+                            </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Ward</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listWard"
+                                [(ngModel)]="selectedWard"
+                                optionLabel="ward_label"
+                                placeholder="Select Ward"
+                            ></p-dropdown>
+                            <small *ngIf="!cr_ward_code && showError" class="p-error">
+                                Ward is required.
+                            </small>
+                        </div>
+                        
+                        <div class="flex-auto mb-3">
+                            <label class="font-bold block mb-2 required"
+                                >Location Type</label
+                            >
+                            <div class="flex align-items-center gap-2">
+                                <p-dropdown
+                                [filter]="true"
+                                filterBy="locationtype_label"
+                                [showClear]="true"
+                                [options]="listLocationType"
+                                [(ngModel)]="cr_location_type_id"
+                                optionValue="location_type_id"
+                                optionLabel="locationtype_label"
+                                placeholder="Select a Location Type"
+                            ></p-dropdown>
+                            <button
+                                pButton
+                                icon="pi pi-plus"
+                                class="custom-button-with-border"
+                                (click)="showCreateLocationType()"
+                            ></button>
+                            <small *ngIf="!cr_location_type_id && showError" class="p-error">
+                                Location Type is required.
+                            </small>
+                        </div>
+                            
+                           
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="lat" class="font-bold block mb-2 required"
+                                >Latitude</label>
+                            <p-inputMask 
+                                mask="9999.9999" 
+                                [(ngModel)]="cr_lat"
+                                placeholder="____.____" />
+                                <small *ngIf="!cr_lat && showError" class="p-error">
+                                    Latitude is required.
+                                </small>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="lng" class="font-bold block mb-2 required"
+                                >Longitude</label>
+                            <p-inputMask 
+                                mask="9999.9999" 
+                                [(ngModel)]="cr_lng"
+                                placeholder="____.____" />
+                                <small *ngIf="!cr_lng && showError" class="p-error">
+                                    Longitude is required.
+                                </small>
+                        </div>
+                        <label class="font-bold block mb-2 required"
+                            >Image Overview</label
+                        >
+                        <div class="flex-auto mb-3">
+                            <input
+                                class="form-control"
+                                chooseIcon="pi pi-upload"
+                                type="file"
+                                maxFileSize="1000000"
+                                [(ngModel)]="cr_image_overview"
+                                (change)="onChangeFile($event, 'cr_image_overview')"
+                                #myInputFile
+                            />
+                            <small *ngIf="!cr_image_overview && showError" class="p-error">
+                                Image Overview is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="resetForm(); visible_model_create = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="create()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>
+<div class="flex justify-content-center">
+    <p-dialog
+        header="Header"
+        [(visible)]="visible_model_createLocationtype"
+        [modal]="true"
+        [style]="{ width: '25rem' }"
+    >
+        <ng-template pTemplate="header">
+            <div
+                class="inline-flex align-items-center justify-content-center gap-2"
+            >
+                <span class="font-bold white-space-nowrap"> Create </span>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Create Location Type</span>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="locationtypecode" class="font-semibold w-6rem"
+                >Code</label
+            >
+            <input
+                pInputText
+                id="locationtypecode"
+                [(ngModel)]="cr_location_type_code"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="locationtypename" class="font-semibold w-6rem"
+                >Name</label
+            >
+            <input
+                pInputText
+                id="locationtypename"
+                [(ngModel)]="cr_location_type_name"
+                class="flex-auto"
+                autocomplete="off"
+            />
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="visible = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="createLocationType()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>
+<!-- UPDATE LOCATION -->
+<div class="flex justify-content-center"  *ngIf="item_edit">
+    <p-dialog
+        header="Employee Information"
+        [(visible)]="visible_model_edit"
+        [modal]="true"
+        showEffect="fade"
+        [breakpoints]="{ '960px': '75vw' }"
+    >
+        <div class="flex-auto p-2" style="width: 800px">
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <div class="image-container">
+                        <div class="image-item">
+                            <label class="font-bold block mb-2"
+                                >Image Overview</label
+                            >
+                            <div class="image-frame">
+                                <p-image
+                                    [src]="item_edit.image_overview"
+                                    alt="Image Overview"
+                                    width="200"
+                                    [preview]="true"
+                                ></p-image>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <div class="card flex flex-column justify-content-center">
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="name"
+                                class="font-bold block mb-2 required"
+                                >Location Code</label
+                            >
+                            <input
+                                pInputText
+                                id="code"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="item_edit.location_code"
+                            />
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="name"
+                                class="font-bold block mb-2 required"
+                                >Location Name</label
+                            >
+                            <input
+                                pInputText
+                                id="name"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="item_edit.location_name"
+                            />
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Address</label
+                            >
+                            <input
+                                pInputText
+                                id="address"
+                                class="flex-auto"
+                                autocomplete="off"
+                                [(ngModel)]="item_edit.location_address"
+                            />
+                        </div>
+                        
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Province</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listProvince"
+                                [(ngModel)]="selectedProvince"
+                                optionLabel="province_label"
+                                placeholder="Select Province"
+                                (onChange)="onProvinceChange($event?.value?.province_code|| null)"
+                            ></p-dropdown>
+                            
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >District</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listDistrict"
+                                [(ngModel)]="selectedDistrict"
+                                optionLabel="district_label"
+                                placeholder="Select District"
+                                (onChange)="onDistrictChange($event?.value?.district_code|| null)"
+                            ></p-dropdown>
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label
+                                for="address"
+                                class="font-bold block mb-2 required"
+                                >Ward</label
+                            >
+                            <p-dropdown
+                                [showClear]="true"
+                                [options]="listWard"
+                                [(ngModel)]="selectedWard"
+                                optionLabel="ward_label"
+                                placeholder="Select Ward"
+                            ></p-dropdown>
+                            <small *ngIf="!cr_ward_code && showError" class="p-error">
+                                Ward is required.
+                            </small>
+                        </div>
+                        
+                        <div class="flex-auto mb-3">
+                            <div class="flex align-items-center gap-2">
+                                <label class="font-bold block mb-2 required"
+                                >Location Type</label
+                            >
+                            <p-dropdown
+                                [filter]="true"
+                                filterBy="locationtype_label"
+                                [showClear]="true"
+                                [options]="listLocationType"
+                                [(ngModel)]="item_edit.location_type_id"
+                                optionValue="location_type_id"
+                                optionLabel="locationtype_label"
+                                placeholder="Select a Location Type"
+                            />
+                            <button
+                            pButton
+                            icon="pi pi-plus"
+                            class="custom-button-with-border"
+                            (click)="showCreateLocationType()"
+                        ></button>
+                            </div>
+                           
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="lat" class="font-bold block mb-2 required"
+                                >Latitude</label>
+                            <p-inputMask 
+                                mask="9999.9999" 
+                                [(ngModel)]="item_edit.lat"
+                                placeholder="____.____" />
+                               
+                        </div>
+                        <div class="flex-auto mb-3">
+                            <label for="lng" class="font-bold block mb-2 required"
+                                >Longitude</label>
+                            <p-inputMask 
+                                mask="9999.9999" 
+                                [(ngModel)]="item_edit.lng"
+                                placeholder="____.____" />
+                                
+                        </div>
+                        <label class="font-bold block mb-2 required"
+                            >Image Overview</label
+                        >
+                        <div class="flex-auto mb-3">
+                            <input
+                                class="form-control"
+                                chooseIcon="pi pi-upload"
+                                type="file"
+                                maxFileSize="1000000"
+                                [(ngModel)]="item_edit.image_overview"
+                                (change)="onChangeFile($event, 'item_edit.image_overview')"
+                                #myInputFile
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                (onClick)="resetFrom(); visible_model_create = false"
+            />
+            <p-button
+                label="Save"
+                [outlined]="true"
+                severity="secondary"
+                (click)="save()"
+            />
+        </ng-template>
+    </p-dialog>
+</div>

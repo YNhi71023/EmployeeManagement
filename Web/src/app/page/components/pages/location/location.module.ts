@@ -8,6 +8,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ImageModule } from 'primeng/image';
+import { FileUpload, FileUploadModule } from 'primeng/fileupload';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   imports: [
@@ -18,7 +24,13 @@ import { InputTextModule } from 'primeng/inputtext';
     ToolbarModule,
     ButtonModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule,
+    DialogModule,
+    InputMaskModule,
+    ImageModule, 
+    FileUploadModule,
+    CardModule
 
   ],declarations: [LocationComponent],
 })

@@ -27,8 +27,19 @@ export class LocationTypeComponent {
   cr_location_type_name: any = ''
   dataLocationType: any = []
   visible_model_create: boolean = false;
+  visible_model_edit:boolean = false;
   showCreateLocationType() {
     this.visible_model_create = true;
+  }
+  item_edit:any
+  Show(item:any){
+    console.log(item)
+    this.item_edit = item
+    this.visible_model_edit = true;
+  }
+  resetForm(){
+    this.cr_location_type_code=''
+    this.cr_location_type_name=''
   }
   filter() {
     this.storeService.FilterLocationType(this.location_type_code, this.location_type_name).subscribe((data: any) => {
@@ -61,6 +72,12 @@ export class LocationTypeComponent {
       this.cr_location_type_code = ''
       this.cr_location_type_name = ''
       this.filter()
+    })
+  }
+  
+  save(){
+    this.storeService.UpdateLocationType(this.item_edit.location_type_code,this.item_edit.location_type_name,this.item_edit.location_type_id).subscribe((data:any)=>{
+      console.log(data)
     })
   }
 }

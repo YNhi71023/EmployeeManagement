@@ -225,6 +225,22 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "CreateLocation",
+    "RelativePath": "api/Store/CreateLocation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationCreate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
     "Method": "CreateLocationType",
     "RelativePath": "api/Store/CreateLocationType",
     "HttpMethod": "POST",
@@ -234,6 +250,22 @@
       {
         "Name": "l",
         "Type": "empmanwebapi.Models.LocationType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterDistrict",
+    "RelativePath": "api/Store/FilterDistrict",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "d",
+        "Type": "empmanwebapi.Models.District",
         "IsRequired": true
       }
     ],
@@ -266,6 +298,54 @@
       {
         "Name": "t",
         "Type": "empmanwebapi.Models.LocationType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterProvince",
+    "RelativePath": "api/Store/FilterProvince",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "p",
+        "Type": "empmanwebapi.Models.Province",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterWard",
+    "RelativePath": "api/Store/FilterWard",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "w",
+        "Type": "empmanwebapi.Models.Ward",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "UpdateLocation",
+    "RelativePath": "api/Store/UpdateLocation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationUpdate",
         "IsRequired": true
       }
     ],
