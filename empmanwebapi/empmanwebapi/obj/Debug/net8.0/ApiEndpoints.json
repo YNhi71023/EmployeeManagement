@@ -241,6 +241,22 @@
   },
   {
     "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "CreateLocationManager",
+    "RelativePath": "api/Store/CreateLocationManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationManager",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
     "Method": "CreateLocationType",
     "RelativePath": "api/Store/CreateLocationType",
     "HttpMethod": "POST",
@@ -250,6 +266,22 @@
       {
         "Name": "l",
         "Type": "empmanwebapi.Models.LocationType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "DeleteLocationManager",
+    "RelativePath": "api/Store/DeleteLocationManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "l",
+        "Type": "empmanwebapi.Models.LocationManagerDelete",
         "IsRequired": true
       }
     ],
@@ -282,6 +314,22 @@
       {
         "Name": "l",
         "Type": "empmanwebapi.Models.LocationFilter",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "empmanwebapi.Controllers.StoreController",
+    "Method": "FilterLocationManager",
+    "RelativePath": "api/Store/FilterLocationManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "t",
+        "Type": "empmanwebapi.Models.LocationManagerFilter",
         "IsRequired": true
       }
     ],

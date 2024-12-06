@@ -58,8 +58,10 @@ export class LocationComponent {
   visible_model_edit: boolean = false;
   showError: boolean = false;
   fileTemplete!: File;
- 
-  Show(item: any) {
+  showDialog_Create() {
+    this.visible_model_create = true;
+  } 
+  ShowDialog_Update(item: any) {
     console.log(item);
     this.item_edit = item;
     this.visible_model_edit = true;
@@ -152,7 +154,7 @@ export class LocationComponent {
       param.ward_code,
       param.district_code,
       param.province_code,
-      param.location_type_id
+      param.location_type_id, -1,1
     ).subscribe((data: any) => {
       console.log(data);
       if (data.status == "ok") {

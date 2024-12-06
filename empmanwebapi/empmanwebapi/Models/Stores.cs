@@ -32,6 +32,9 @@
         public string district_code { get; set; }
         public string province_code { get; set; }
         public int location_type_id { get; set; }
+        public int employee_id { get; set; }
+        public int status { get; set; }
+
     }
     public class LocationCreate : LocationFilter
     {
@@ -40,6 +43,19 @@
         public string image_overview {  get; set; }
     }
     public class LocationUpdate : LocationCreate
+    {
+        public int location_id { get; set; }
+    }
+    public class LocationManager
+    {
+        public int location_id { get; set; }
+        public int employee_id {  get; set; }
+    }
+    public class LocationManagerFilter
+    {
+        public int employee_id { get; set; }
+    }
+    public class LocationManagerDelete
     {
         public int location_id { get; set; }
     }

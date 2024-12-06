@@ -125,7 +125,28 @@ namespace empmanwebapi.Controllers
 
             return BadRequest("Error filter location type");
         }
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> FilterLocationManager([FromBody] LocationManagerFilter t)
+        {
+            ReponseModel r = new ReponseModel();
+            DataTable data = await _context.FilterLocationManager_(user_login, t);
+            if (data.Rows.Count == 0)
+            {
+                r.status = "error";
+                r.message = "location type not found";
+                return Ok(r);
+            }
+            if (data.Rows.Count > 0)
+            {
+                r.status = "ok";
+                r.message = "filter successful";
+                r.data = data;
+                return Ok(r);
+            }
 
+            return BadRequest("Error filter location manager");
+        }
         [HttpPost("[action]")]
         [SercurityToken]
         public async Task<IActionResult> CreateLocationType([FromBody] LocationType l)
@@ -170,6 +191,27 @@ namespace empmanwebapi.Controllers
         }
         [HttpPost("[action]")]
         [SercurityToken]
+        public async Task<IActionResult> CreateLocationManager([FromBody] LocationManager l)
+        {
+            ReponseModel r = new ReponseModel();
+            if (l == null)
+            {
+                r.status = "error";
+                r.message = "please input Location Manager";
+                return Ok(r);
+            };
+            DataTable data = await _context.CreateLocationManager_(user_login, l);
+            if (data.Rows.Count > 0)
+            {
+                r.status = "ok";
+                r.message = data.Rows[0]["NOTIFICATION"].ToString();
+                r.data = data;
+                return Ok(r);
+            }
+            return BadRequest("Error creating Location Manager");
+        }
+        [HttpPost("[action]")]
+        [SercurityToken]
         public async Task<IActionResult> UpdateLocation([FromBody] LocationUpdate l)
         {
             ReponseModel r = new ReponseModel();
@@ -209,6 +251,27 @@ namespace empmanwebapi.Controllers
                 return Ok(r);
             }
             return BadRequest("Error update Location type ");
+        }
+        [HttpPost("[action]")]
+        [SercurityToken]
+        public async Task<IActionResult> DeleteLocationManager([FromBody] LocationManagerDelete l)
+        {
+            ReponseModel r = new ReponseModel();
+            if (l == null)
+            {
+                r.status = "error";
+                r.message = "please input location manager";
+                return Ok(r);
+            };
+            DataTable updatelocationman = await _context.DeleteLocationManager_(user_login, l);
+            if (updatelocationman.Rows.Count == 1)
+            {
+                r.status = "ok";
+                r.message = "deleted successful";
+                r.data = updatelocationman;
+                return Ok(r);
+            }
+            return BadRequest("Error deleted location manager");
         }
     }
     

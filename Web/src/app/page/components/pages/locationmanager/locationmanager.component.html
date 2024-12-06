@@ -1,0 +1,64 @@
+
+<div class="card mt-4">
+  <div class="p-fluid p-formgrid grid">
+      <div class="field col-12 md:col-3">
+          <h6>Location Manager:</h6>
+          <p-dropdown
+          [filter]="true"
+          filterBy="employee_label"
+          [showClear]="true"
+          [options]="listMan"
+          [(ngModel)]="selectedMan"
+          optionLabel="employee_label"
+          placeholder="Select a Manager"
+          />
+      </div>
+  </div>
+</div>
+<p-toolbar>
+  <div class="p-toolbar-group-left flex flex-wrap">
+      <button
+          pButton
+          type="button"
+          label="Search"
+          class="p-button-success mr-2"
+          icon="pi pi-search"
+          (click)="filterLocationManager()"
+      ></button>     
+  </div>
+</p-toolbar>
+<p-pickList 
+  [source]="sourceLocation" 
+  [target]="targetLocation" 
+  sourceHeader="Available Locations" 
+  targetHeader="Manager Locations" 
+  [dragdrop]="true" 
+  [responsive]="true" 
+  [sourceStyle]="{ height: '30rem' }"
+  [targetStyle]="{ height: '30rem' }" 
+  filterBy="location_name" 
+  sourceFilterPlaceholder="Search by name" 
+  targetFilterPlaceholder="Search by name" 
+  breakpoint="1400px"
+  (onMoveToTarget)="onMoveToTarget($event)"
+  (onMoveToSource)="onMoveToSource($event)">
+ 
+ <ng-template let-location pTemplate="item">
+   <div class="flex flex-wrap p-2 align-items-center gap-3">
+     <img 
+       class="w-4rem shadow-2 flex-shrink-0 border-round" 
+       [src]="location.image_overview ? location.image_overview : 'default-image.jpg'" 
+       alt="{{ location.location_name }}" />
+     <div class="flex-1 flex flex-column gap-2">
+       <span class="font-bold">
+         {{ location.location_name }}
+       </span>
+       <div class="flex align-items-center gap-2">
+         <i class="pi pi-map text-sm"></i>
+         <span>{{ location.location_code }}</span>
+       </div>
+     </div>
+     <span class="font-bold text-900">{{ location.location_address }}</span>
+   </div>
+ </ng-template>
+</p-pickList>

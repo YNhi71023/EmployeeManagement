@@ -32,6 +32,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Location List', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/location'] },
                     { label: 'Location Type', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/location-type'] },
+                    { label: 'Location Manager', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/locationmanager'] },
                 ]
             },
             {
