@@ -110,6 +110,7 @@ namespace empmanwebapi.Data
                     command.Parameters.Add(new SqlParameter("@province_code", l.province_code));
                     command.Parameters.Add(new SqlParameter("@location_type_id", l.location_type_id));
                     command.Parameters.Add(new SqlParameter("@employee_id", l.employee_id));
+                    command.Parameters.Add(new SqlParameter("@status", l.status));
                     using (var adapter = new SqlDataAdapter(command))
                     {
                         DataTable dataTable = new DataTable();
@@ -129,6 +130,7 @@ namespace empmanwebapi.Data
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@user_login", user_login));
                     command.Parameters.Add(new SqlParameter("@employee_id", l.employee_id));
+                    command.Parameters.Add(new SqlParameter("@status", l.status));
                     using (var adapter = new SqlDataAdapter(command))
                     {
                         DataTable dataTable = new DataTable();
@@ -262,7 +264,7 @@ namespace empmanwebapi.Data
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (var command = new SqlCommand("[dbo].[LocationType.Update]", connection))
+                using (var command = new SqlCommand("[dbo].[LocationManager.Delete]", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@user_login", user_login));

@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { AuthService } from 'src/app/page/service/auth.service';
 import { helperCore } from 'src/app/page/service/CORE';
 import { LoginService } from 'src/app/page/service/login.service';
 
@@ -25,7 +26,7 @@ import { LoginService } from 'src/app/page/service/login.service';
 })
 export class LoginComponent {
 
-  constructor(private login_service: LoginService,private router: Router){}
+  constructor(private authService: AuthService,private login_service: LoginService,private router: Router){}
   ngOnInit(): void {
     localStorage.clear()
   }
@@ -48,6 +49,7 @@ export class LoginComponent {
       if(data.status == "ok"){
         // const user = JSON.stringify(data.data)
         // localStorage.setItem("_u",helperCore.encode(user))
+        localStorage.setItem("username", this.logiObj.username);
         localStorage.setItem("_ut",helperCore.encode(data.data.token))
         //localStorage.setItem("_ut",helperCore.decode(JSON.stringify(data.data.token)))
         this.router.navigate(['/dashboard'])

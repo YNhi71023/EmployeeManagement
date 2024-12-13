@@ -8,6 +8,10 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
+import { Tag } from 'primeng/tag';
+import { Rating } from 'primeng/rating';
+import { SelectButton } from 'primeng/selectbutton';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -18,7 +22,8 @@ import { ToolbarModule } from 'primeng/toolbar';
     ButtonModule,
     DropdownModule,
     CardModule,
-    ToolbarModule
+    ToolbarModule,
+    TableModule
   ],declarations: [LocationManagerComponent],
 })
 export class LocationManagerModule { }

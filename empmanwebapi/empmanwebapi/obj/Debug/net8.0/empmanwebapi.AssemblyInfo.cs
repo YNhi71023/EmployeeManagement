@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("empmanwebapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+325b99c78547bb01ec76db7509b85c14732f5ee5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56b5a7871fcc479b935cda148cacf19cb340f9eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("empmanwebapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("empmanwebapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

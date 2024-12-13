@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using storeworkingapi.Models;
 using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace empmanwebapi.Controllers
 {
@@ -264,17 +265,18 @@ namespace empmanwebapi.Controllers
         public async Task<IActionResult> ChangePassword([FromBody] ChangePassword c)
         {
             ReponseModel r = new ReponseModel();
-            if (c == null)
+            DataTable data = await _context.ChangePassword_(user_login, c);
+            if (data.Rows[0]["NOTIFICATION"].ToString() == "Old password is incorrect.")
             {
                 r.status = "error";
-                r.message = "please input position";
+                r.message = "Old password is incorrect.";
                 return Ok(r);
             };
             DataTable updateposition = await _context.ChangePassword_(user_login, c);
-            if (updateposition.Rows.Count == 1)
+            if (data.Rows[0]["NOTIFICATION"].ToString() == "successful")
             {
                 r.status = "ok";
-                r.message = "change password successful";
+                r.message = "successful";
                 r.data = updateposition;
                 return Ok(r);
             }

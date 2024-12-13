@@ -104,6 +104,7 @@ namespace storeworkingapi.Models
     }
     public class ChangePassword
     {
+        public int employee_id { get; set; }
         public string old_password { get; set; }
         public string new_password { get; set; }
     }

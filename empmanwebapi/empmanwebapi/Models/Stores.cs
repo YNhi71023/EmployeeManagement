@@ -54,6 +54,7 @@
     public class LocationManagerFilter
     {
         public int employee_id { get; set; }
+        public int status { get; set; }
     }
     public class LocationManagerDelete
     {

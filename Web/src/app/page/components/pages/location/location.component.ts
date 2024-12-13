@@ -60,7 +60,7 @@ export class LocationComponent {
   fileTemplete!: File;
   showDialog_Create() {
     this.visible_model_create = true;
-  } 
+  }
   ShowDialog_Update(item: any) {
     console.log(item);
     this.item_edit = item;
@@ -154,20 +154,20 @@ export class LocationComponent {
       param.ward_code,
       param.district_code,
       param.province_code,
-      param.location_type_id, -1,1
+      param.location_type_id, -1, 1 || null
     ).subscribe((data: any) => {
       console.log(data);
       if (data.status == "ok") {
         this.dataLocation = data.data;
         console.log(this.dataLocation);
-        
+
       } else {
         alert(data.message);
       }
     });
   }
   resetForm() {
-      this.cr_location_code = '',
+    this.cr_location_code = '',
       this.cr_location_name = '',
       this.cr_location_address = '',
       this.cr_ward_code = '',
@@ -179,11 +179,26 @@ export class LocationComponent {
       this.cr_image_overview = ''
   }
   create() {
+
     const param = {
       cr_province_code: this.selectedProvince == undefined ? '' : this.selectedProvince.province_code,
       cr_district_code: this.selectedDistrict == undefined ? '' : this.selectedDistrict.district_code,
       cr_ward_code: this.selectedWard == undefined ? '' : this.selectedWard.ward_code,
     }
+    if (!this.cr_location_code || 
+      !this.cr_location_name || 
+      !this.cr_location_address || 
+      !param.cr_ward_code ||
+      !param.cr_district_code ||
+      !param.cr_province_code ||
+      !this.cr_location_type_id ||
+      !this.cr_lat ||
+      !this.cr_lng ||
+      !this.cr_image_overview) {
+      this.showError = true;
+      return;
+    }
+    this.showError = false;
     this.storeService.CreateLocation(
       this.cr_location_code,
       this.cr_location_name,
@@ -205,7 +220,7 @@ export class LocationComponent {
         } else {
           alert(data.message)
         }
-        
+
         this.filter()
       })
   }
@@ -231,7 +246,7 @@ export class LocationComponent {
       ).subscribe(
         (data: any) => {
           console.log('API Response:', data);
-          this.visible_model_edit=false
+          this.visible_model_edit = false
           this.filter()
         });
   }
@@ -240,8 +255,8 @@ export class LocationComponent {
   showCreateLocationType() {
     this.visible_model_createLocationtype = true;
   }
-  cr_location_type_code:any
-  cr_location_type_name:any
+  cr_location_type_code: any
+  cr_location_type_name: any
   createLocationType() {
     this.storeService.CreateLocationType(this.cr_location_type_code, this.cr_location_type_name).subscribe((data: any) => {
       console.log(data)

@@ -1,6 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { dA } from '@fullcalendar/core/internal-common';
+import { AuthService } from 'src/app/page/service/auth.service';
 import { EmployeeService } from 'src/app/page/service/employee.service';
+import { LoginService } from 'src/app/page/service/login.service';
 import { StoreService } from 'src/app/page/service/store.service';
 
 @Component({
@@ -9,8 +11,9 @@ import { StoreService } from 'src/app/page/service/store.service';
   styleUrls: ['./locationmanager.component.scss']
 })
 export class LocationManagerComponent {
-  sourceLocation: any[] = []; 
-  targetLocation: any[] = []; 
+  sourceLocation: any[] = [];
+  targetLocation: any[] = [];
+  pastLocation: any[] = [];
   location_id: any = '';
   location_code: string = '';
   location_name: string = '';
@@ -26,6 +29,7 @@ export class LocationManagerComponent {
   location_type_name: string = '';
   employee_id: any = ''
   employee_name: any = ''
+  username: string = '';
   listMan: any = [];
   listWard: any = [];
   listDistrict: any = [];
@@ -41,30 +45,46 @@ export class LocationManagerComponent {
   constructor(
     private storeService: StoreService,
     private cdr: ChangeDetectorRef,
-    private employeeService: EmployeeService
-  ) {}
+    private employeeService: EmployeeService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      this.username = storedUsername;
+      console.log('Username:', this.username);
+    } else {
+      console.log('No username found in LocalStorage.');
+    }
     this.loadProvinces();
     this.loadLocationType();
     this.loadManager();
     this.filter();
+    this.filterLocationManager();
     if (!Array.isArray(this.sourceLocation)) {
       this.sourceLocation = [];
     }
+
   }
+  onSearchClick() {
+    this.filterLocationManager();
+    this.filterLocationManagerPast();
+  }
+
   loadManager() {
-    this.employeeService.FilterEmployee(0, '', -1, '', 2055, '', '', 0,0).subscribe((data: any) => {
-      console.log(data)  
+    this.employeeService.FilterEmployee(0, '', -1, '', 2055, '', '', 0, 0).subscribe((data: any) => {
+      console.log(data)
       if (data.status == 'ok') {
-            this.listMan = data.data.map((obj) => ({                 
-                ...obj,
-                employee_label: obj.employee_id + ' - ' + obj.employee_name,
-            }));
-            
-        }
+        this.listMan = data.data.map((obj) => ({
+          ...obj,
+          employee_label: obj.employee_id + ' - ' + obj.employee_name,
+        }));
+
+      }
     });
-}
+  }
   loadProvinces() {
     this.storeService.FilterProvince('', '').subscribe((data: any) => {
       if (data.status == 'ok') {
@@ -93,31 +113,32 @@ export class LocationManagerComponent {
       district_code: this.selectedDistrict ? this.selectedDistrict.district_code : '',
       ward_code: this.selectedWard ? this.selectedWard.ward_code : '',
       location_type_id: this.selectedLocationType ? this.selectedLocationType.location_type_id : 0,
-      employee_id:this.selectedMan==undefined ? 0 : this.selectedMan.employee_id
+      employee_id: this.selectedMan == undefined ? 0 : this.selectedMan.employee_id
     };
 
-    this.storeService.FilterLocation(0,this.location_code,this.location_name,this.location_address,param.ward_code,param.district_code,param.province_code,param.location_type_id,-1,-1).subscribe((response: any) => {
+    this.storeService.FilterLocation(0, this.location_code, this.location_name, this.location_address, param.ward_code, param.district_code, param.province_code, param.location_type_id, -1, 1).subscribe((response: any) => {
       if (response && response.data && Array.isArray(response.data)) {
         this.sourceLocation = response.data;
-      } else {
-        console.error('Dữ liệu không hợp lệ hoặc không chứa mảng');
-        this.sourceLocation = [];
       }
+      // else {
+      //   console.error('Dữ liệu không hợp lệ hoặc không chứa mảng');
+      //   this.sourceLocation = [];
+      // }
       this.cdr.markForCheck();
     });
   }
   onMoveToTarget(event: any): void {
-    const movedLocations = event.items; 
+    const movedLocations = event.items;
     if (!this.selectedMan) {
       alert('Vui lòng chọn nhân viên trước.');
       this.targetLocation = this.targetLocation.filter((item) => !movedLocations.includes(item));
       return;
     }
-  
+
     movedLocations.forEach((location: any) => {
       const location_id = location.location_id;
       const employee_id = this.selectedMan.employee_id;
-  
+
       this.storeService.CreateLocationManager(location_id, employee_id)
         .subscribe(
           (response: any) => {
@@ -132,13 +153,13 @@ export class LocationManagerComponent {
           }
         );
     });
-    this.cdr.markForCheck(); 
+    this.cdr.markForCheck();
   }
   onMoveToSource(event: any): void {
     const movedLocations = event.items; // Các mục đã di chuyển
     movedLocations.forEach((location: any) => {
       const location_id = location.location_id;
-  
+
       this.storeService
         .DeleteLocationManager(location_id) // Gọi API xóa Manager Location
         .subscribe(
@@ -156,21 +177,50 @@ export class LocationManagerComponent {
         );
     });
   }
-  
-  
-  filterLocationManager(){
+  filterLocationManager() {
     const param = {
-      employee_id:this.selectedMan==undefined ? 0 : this.selectedMan.employee_id
+      employee_id: this.selectedMan == undefined ? 0 : this.selectedMan.employee_id
     };
-    this.storeService.FilterLocationManager(param.employee_id).subscribe((response:any)=>{
+    console.log(this.employee_id)
+    this.storeService.FilterLocationManager(param.employee_id, 1).subscribe((response: any) => {
+      this.targetLocation = []
       console.log(response)
       if (response && response.data && Array.isArray(response.data)) {
         this.targetLocation = response.data;
-      } else {
-        console.error('Dữ liệu không hợp lệ hoặc không chứa mảng');
-        this.targetLocation = [];
+      }
+      // else {
+      //   console.error('Dữ liệu không hợp lệ hoặc không chứa mảng');
+      //   this.targetLocation = [];
+      // }
+      this.cdr.markForCheck();
+    })
+    this.storeService.FilterLocationManager(param.employee_id, 0).subscribe((response: any) => {
+      this.pastLocation = []
+      console.log(response)
+      if (response && response.data && Array.isArray(response.data)) {
+        this.pastLocation = response.data;
       }
       this.cdr.markForCheck();
     })
   }
+  filterLocationManagerPast() {
+    const param = {
+      employee_id: this.selectedMan == undefined ? 0 : this.selectedMan.employee_id
+    };
+    this.storeService.FilterLocationManager(param.employee_id, 0).subscribe((response: any) => {
+      this.pastLocation = []
+      console.log(response)
+      if (response && response.data && Array.isArray(response.data)) {
+        this.pastLocation = response.data;
+      }
+      this.cdr.markForCheck();
+    })
+  }
+  onClearDropdown() {
+    this.selectedMan = null; // Xóa giá trị đã chọn
+    this.filterLocationManager(); 
+    // Gọi lại hàm filter để reload dữ liệu
+  }
+  
+
 }

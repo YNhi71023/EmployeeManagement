@@ -49,14 +49,11 @@ export class PositionComponent {
   
   save(){
     console.log(this.item_edit)
-      if(this.item_edit.position_name == ''){
-        alert("enter position name")
-        return
-      }
-      if(this.item_edit.position_name.length < 5){
-        alert("add position name")
-        return
-      }
+    if (this.item_edit.position_name === '' || this.item_edit.position_name.length < 5) {
+      alert("Position name cannot be empty and must be at least 5 characters long.");
+      return;
+    }
+    
     this.employeeService.UpdatePosition(this.item_edit.position_code, this.item_edit.position_name, this.item_edit.position_id).subscribe((data:any)=>{
       console.log(data)
       if(data.status == "ok"){
@@ -103,21 +100,16 @@ export class PositionComponent {
     this.cr_position_name=''
   }
   create(){
-    if(this.cr_position_code == ''){
-      alert("enter position code")
-      return 
-    }
-    if(this.cr_position_name == ''){
-      alert("enter position name")
-      return
-    }
-    if(this.cr_position_code.length < 2){
-      alert("add position code")
-      return
-    }
-    if(this.cr_position_name.length < 5){
-      alert("add position name")
-      return
+    const validations = [
+      { condition: this.cr_position_code === '' || this.cr_position_code.length < 3, message: "Position code cannot be empty and must be at least 3 characters long." },
+      { condition: this.cr_position_name === ''|| this.cr_position_name.length < 5 , message: "Position name cannot be empty and must be at least 5 characters long." },
+    ];
+
+    for (const validation of validations) {
+      if (validation.condition) {
+        alert(validation.message);
+        return;
+      }
     }
     this.employeeService.CreatePosition(this.cr_position_code,this.cr_position_name).subscribe((data:any)=>{
       console.log(data)

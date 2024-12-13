@@ -25,8 +25,8 @@ export class StoreService{
     FilterLocationType(location_type_code: string,location_type_name: string){
         return this.http.post(environment.domain + this.controller + 'FilterLocationType', {location_type_code,location_type_name})
     }
-    FilterLocationManager(employee_id: number){
-        return this.http.post(environment.domain + this.controller + 'FilterLocationManager', {employee_id})
+    FilterLocationManager(employee_id: number, status:number){
+        return this.http.post(environment.domain + this.controller + 'FilterLocationManager', {employee_id,status})
     }
     CreateLocationType(location_type_code: string,location_type_name: string){
         return this.http.post(environment.domain + this.controller + 'CreateLocationType', {location_type_code,location_type_name})

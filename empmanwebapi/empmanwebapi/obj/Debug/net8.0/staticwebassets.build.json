@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XEc+m35FR1VDbAUSYuFov48NsAoLh74x78kUpU1iUXM=",
+  "Hash": "y78k9mu20EmCVad9B5DhR4m/OqZH6HMeefc6Tmv2qq4=",
   "Source": "empmanwebapi",
   "BasePath": "_content/empmanwebapi",
   "Mode": "Default",
@@ -2428,6 +2428,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\95a80a8c-673c-4567-a6ed-96df1132c08d.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\95c296a3-6209-46ae-a46e-22a65568c20e.jpg",
+      "SourceId": "empmanwebapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\",
+      "BasePath": "_content/empmanwebapi",
+      "RelativePath": "uploads/95c296a3-6209-46ae-a46e-22a65568c20e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\95c296a3-6209-46ae-a46e-22a65568c20e.jpg"
     },
     {
       "Identity": "C:\\Users\\Y NHI\\Documents\\GitHub\\EmployeeManagement\\empmanwebapi\\empmanwebapi\\wwwroot\\uploads\\9736e558-2251-40c0-a28a-114f9736a977.jpg",

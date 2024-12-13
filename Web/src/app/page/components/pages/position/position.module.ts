@@ -13,6 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { BadgeModule } from 'primeng/badge';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   
@@ -26,7 +27,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     TableModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    CardModule
     
   ],declarations: [PositionComponent],
 })

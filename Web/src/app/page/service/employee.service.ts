@@ -51,8 +51,8 @@ export class EmployeeService {
       UpdateType(type_code:string,type_name:string,level:number,type_id:number){
         return this.http.post(environment.domain + this.controller + 'UpdateType', {type_code,type_name,level,type_id})
       }
-      ChangePassword(old_password: string, new_password: string){
-        return this.http.post(environment.domain + this.controller + 'ChangePassword', {old_password,new_password})
+      ChangePassword(employee_id:number, old_password: string, new_password: string){
+        return this.http.post(environment.domain + this.controller + 'ChangePassword', {employee_id, old_password,new_password})
       }
       DeletePosition(position_id:number){
         return this.http.post(environment.domain + this.controller + 'DeletePosition', {position_id})

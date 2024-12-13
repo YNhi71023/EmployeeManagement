@@ -11,6 +11,8 @@ import { DialogModule } from 'primeng/dialog';
 import { TypesComponent } from './types.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -24,7 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,   
     DialogModule,
     InputTextModule,  
-    DropdownModule
+    DropdownModule,
+    CardModule
   ],declarations: [TypesComponent],
 })
 export class TypesModule { }

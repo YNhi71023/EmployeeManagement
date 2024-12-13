@@ -44,10 +44,18 @@
         <!-- <p-splitButton label="Options" icon="pi pi-check" [model]="items"></p-splitButton> -->
     </div>
 </p-toolbar>
+<div class="mt-4 mb-4">
+    <p class="m-0" *ngIf="dataEmployeeType.length > 0">
+        {{ dataEmployeeType.length }} Total Row
+    </p>
+    <p class="m-0" *ngIf="dataEmployeeType.length == 0">Data not found</p>
+</div>
+
 <div *ngIf="dataEmployeeType.length > 0">
-    <p-table [value]="dataEmployeeType" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table styleClass="p-datatable-gridlines"  [value]="dataEmployeeType" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
+                <th class="text-center">#</th>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Action</th>
@@ -55,6 +63,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
             <tr>
+                <td class="text-center">{{ item.row_number }}</td>
                 <td>{{ item.employee_type_code }}</td>
                 <td>{{ item.employee_type_name }}</td>
                 <td style="width: 20px; padding: 5px">
@@ -118,9 +127,12 @@
             <label for="level" class="font-semibold w-6rem">Level</label>
             <input
                 pInputText
-                id="level"
+                type="number"
                 [(ngModel)]="cr_level"
+                id="level"
                 class="flex-auto"
+                min="0"
+                step="1"
                 autocomplete="off"
             />
         </div>
@@ -129,7 +141,7 @@
                 label="Cancel"
                 [text]="true"
                 severity="secondary"
-                (onClick)="resetForm();visible_model_create = false"
+                (onClick)="resetForm(); visible_model_create = false"
             />
             <p-button
                 label="Save"

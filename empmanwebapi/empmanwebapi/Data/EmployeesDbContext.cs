@@ -289,6 +289,7 @@ namespace empmanwebapi.Data
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@user_login", user_login));
+                    command.Parameters.Add(new SqlParameter("@employee_id", c.employee_id));
                     command.Parameters.Add(new SqlParameter("@old_password", c.old_password));
                     command.Parameters.Add(new SqlParameter("@new_password", c.new_password));
                     using (var adapter = new SqlDataAdapter(command))
